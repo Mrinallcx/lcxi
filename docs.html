@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Docs — LCX AI | Finance AI by LCX</title>
+<link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+<meta name="description" content="LCX AI documentation: API, search modes, and guides. Learn how to use lcx ai for financial research, sentiment, and Lookout agents.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:           #ffffff;
+  --bg2:          #f8fafc;
+  --bg3:          #f1f5f9;
+  --bg4:          #e8eef6;
+  --border:       #e2e8f0;
+  --border2:      #cbd5e1;
+  --text:         #0f172a;
+  --text2:        #64748b;
+  --text3:        #94a3b8;
+  --blue:         #375ff6;
+  --blue-light:   #eef2ff;
+  --blue-mid:     #e0e7ff;
+  --blue-border:  #c7d2fe;
+  --blue-hover:   #2748e0;
+  --green:        #059669;
+  --green-light:  #ecfdf5;
+  --green-border: #a7f3d0;
+  --gold:         #b45309;
+  --gold-light:   #fffbeb;
+  --gold-border:  #fde68a;
+  --red:          #dc2626;
+  --red-light:    #fff1f2;
+  --red-border:   #fecdd3;
+  --purple:       #7c3aed;
+  --purple-light: #f5f3ff;
+  --purple-border:#ddd6fe;
+  --orange:       #c2410c;
+  --orange-light: #fff7ed;
+  --orange-border:#fed7aa;
+  --sidebar-w:    260px;
+  --nav-h:        56px;
+  --font: 'DM Sans', sans-serif;
+  --head: 'Space Grotesk', sans-serif;
+  --mono: 'Space Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:var(--nav-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-left{display:flex;align-items:center;gap:10px;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;}
+.nav-mark{
+  width:36px;height:36px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;overflow:hidden;
+}
+.nav-mark img{width:100%;height:100%;object-fit:contain;display:block;}
+.nav-name{font-family:var(--head);font-size:15px;font-weight:700;color:var(--text);}
+.nav-by{font-size:11px;font-weight:600;color:var(--blue);letter-spacing:0.5px;}
+.nav-right{display:flex;align-items:center;gap:4px;}
+.nav-links a{
+  font-size:14px;font-weight:600;color:var(--text2);
+  text-decoration:none;margin-left:20px;transition:color .15s;
+}
+.nav-links a:hover{color:var(--blue);}
+.nav-links a.active{color:var(--text);}
+.nav-cta{
+  background:var(--blue)!important;color:#fff!important;
+  padding:8px 18px!important;border-radius:8px!important;
+  font-weight:600!important;margin-left:20px;
+}
+.nav-cta:hover{background:var(--blue-hover)!important;}
+
+/* ── LAYOUT ── */
+.doc-layout{
+  display:flex;
+  margin-top:var(--nav-h);
+  min-height:calc(100vh - var(--nav-h));
+}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:var(--sidebar-w);
+  flex-shrink:0;
+  position:fixed;
+  top:var(--nav-h);
+  left:0;
+  bottom:0;
+  overflow-y:auto;
+  border-right:1px solid var(--border);
+  background:var(--bg2);
+  padding:24px 0 40px;
+}
+.sidebar::-webkit-scrollbar{width:4px;}
+.sidebar::-webkit-scrollbar-track{background:transparent;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+
+.sb-section{margin-bottom:8px;}
+.sb-section-label{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);
+  padding:8px 20px 4px;display:block;
+}
+.sb-link{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 20px;font-size:13px;font-weight:500;
+  color:var(--text2);text-decoration:none;
+  border-left:2px solid transparent;
+  transition:color .12s,background .12s,border-color .12s;
+  cursor:pointer;
+}
+.sb-link:hover{color:var(--text);background:var(--bg3);}
+.sb-link.active{
+  color:var(--blue);background:var(--blue-light);
+  border-left-color:var(--blue);font-weight:600;
+}
+.sb-link .sb-icon{font-size:14px;flex-shrink:0;}
+.sb-badge{
+  margin-left:auto;font-family:var(--mono);font-size:9px;font-weight:700;
+  padding:2px 6px;border-radius:3px;
+}
+.sb-badge-new{background:var(--green-light);color:var(--green);}
+.sb-badge-beta{background:var(--gold-light);color:var(--gold);}
+
+/* ── CONTENT ── */
+.doc-content{
+  margin-left:var(--sidebar-w);
+  flex:1;
+  max-width:760px;
+  padding:48px 52px 80px;
+}
+
+/* ── RIGHT TOC ── */
+.toc-panel{
+  width:200px;flex-shrink:0;
+  position:sticky;top:calc(var(--nav-h) + 24px);
+  align-self:flex-start;
+  padding:0 24px 0 8px;
+  display:none;
+}
+@media(min-width:1200px){.toc-panel{display:block;}}
+.toc-label{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);
+  margin-bottom:10px;
+}
+.toc-item{
+  display:block;font-size:12px;color:var(--text3);
+  text-decoration:none;padding:4px 0 4px 10px;
+  border-left:1px solid var(--border);
+  transition:color .12s,border-color .12s;
+}
+.toc-item:hover{color:var(--blue);}
+.toc-item.active{color:var(--blue);border-left-color:var(--blue);}
+.toc-item.sub{padding-left:20px;font-size:11px;}
+
+/* ── SECTIONS ── */
+.doc-section{margin-bottom:64px;}
+.doc-section:last-child{margin-bottom:0;}
+
+.doc-hero{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--border);}
+.breadcrumb{
+  display:flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:11px;color:var(--text3);
+  margin-bottom:16px;
+}
+.breadcrumb span{color:var(--text3);}
+.breadcrumb a{color:var(--text2);text-decoration:none;}
+.breadcrumb a:hover{color:var(--blue);}
+
+.doc-hero h1{
+  font-family:var(--head);font-size:clamp(26px,3.5vw,36px);
+  font-weight:700;letter-spacing:-0.8px;color:var(--text);
+  margin-bottom:12px;line-height:1.15;
+}
+.doc-hero p{font-size:16px;color:var(--text2);line-height:1.75;max-width:580px;}
+.doc-meta{
+  display:flex;align-items:center;gap:16px;margin-top:16px;flex-wrap:wrap;
+}
+.doc-meta-item{
+  display:flex;align-items:center;gap:5px;
+  font-size:12px;color:var(--text3);font-family:var(--mono);
+}
+
+/* content typography */
+.doc-h2{
+  font-family:var(--head);font-size:22px;font-weight:700;
+  letter-spacing:-0.4px;color:var(--text);
+  margin:40px 0 12px;padding-top:8px;
+}
+.doc-h3{
+  font-family:var(--head);font-size:16px;font-weight:700;
+  color:var(--text);margin:28px 0 8px;
+}
+.doc-p{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:14px;}
+.doc-p strong{color:var(--text);font-weight:600;}
+.doc-p a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--blue-border);}
+.doc-p a:hover{border-bottom-color:var(--blue);}
+
+/* callout */
+.callout{
+  display:flex;gap:12px;align-items:flex-start;
+  padding:14px 16px;border-radius:10px;margin:18px 0;
+  border:1px solid;font-size:13px;line-height:1.65;
+}
+.callout-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.callout-body{color:var(--text2);}
+.callout-body strong{display:block;margin-bottom:3px;font-size:13px;}
+.callout.info{background:var(--blue-light);border-color:var(--blue-border);}
+.callout.info .callout-body strong{color:var(--blue);}
+.callout.tip{background:var(--green-light);border-color:var(--green-border);}
+.callout.tip .callout-body strong{color:var(--green);}
+.callout.warn{background:var(--gold-light);border-color:var(--gold-border);}
+.callout.warn .callout-body strong{color:var(--gold);}
+
+/* code */
+.code-block{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:10px;overflow:hidden;margin:16px 0;
+}
+.code-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 16px;background:var(--bg3);border-bottom:1px solid var(--border);
+}
+.code-lang{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:1px;color:var(--text3);
+}
+.code-copy{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  color:var(--text3);background:none;border:none;cursor:pointer;
+  padding:2px 6px;border-radius:4px;transition:color .12s,background .12s;
+}
+.code-copy:hover{color:var(--blue);background:var(--blue-light);}
+pre{
+  padding:16px;overflow-x:auto;
+  font-family:var(--mono);font-size:12px;line-height:1.7;
+  color:var(--text);
+}
+pre .c{color:var(--text3);}
+pre .k{color:var(--blue);font-weight:700;}
+pre .s{color:var(--green);}
+pre .n{color:var(--purple);}
+pre .v{color:var(--orange);}
+code{
+  font-family:var(--mono);font-size:12px;
+  background:var(--bg3);padding:2px 6px;border-radius:4px;
+  color:var(--text2);border:1px solid var(--border);
+}
+
+/* step list */
+.step-list{display:flex;flex-direction:column;gap:0;margin:16px 0;}
+.step-item{display:flex;gap:16px;position:relative;padding-bottom:24px;}
+.step-item:last-child{padding-bottom:0;}
+.step-item:not(:last-child)::after{
+  content:'';position:absolute;left:15px;top:34px;bottom:0;
+  width:1.5px;background:var(--border2);
+}
+.step-num{
+  width:32px;height:32px;border-radius:50%;flex-shrink:0;
+  background:var(--blue);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:12px;font-weight:700;
+}
+.step-body h4{font-family:var(--head);font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;margin-top:4px;}
+.step-body p{font-size:13px;color:var(--text2);line-height:1.65;}
+
+/* param table */
+.param-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;}
+.param-table th{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:1px;color:var(--text3);
+  padding:10px 14px;text-align:left;
+  background:var(--bg2);border-bottom:1px solid var(--border);
+}
+.param-table td{
+  padding:10px 14px;color:var(--text2);
+  border-bottom:1px solid var(--border);vertical-align:top;
+}
+.param-table tr:last-child td{border-bottom:none;}
+.param-table tr:hover td{background:var(--bg2);}
+.param-name{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--text);}
+.param-type{font-family:var(--mono);font-size:11px;color:var(--purple);}
+.param-req{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  padding:2px 6px;border-radius:3px;
+}
+.req-yes{background:var(--red-light);color:var(--red);}
+.req-no{background:var(--bg3);color:var(--text3);}
+
+/* mode chips */
+.mode-chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0;}
+.mode-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;
+  border:1px solid;cursor:default;
+}
+
+/* endpoint card */
+.endpoint-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;margin:16px 0;
+}
+.ep-header{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 16px;background:var(--bg3);border-bottom:1px solid var(--border);
+}
+.ep-method{
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  padding:3px 9px;border-radius:5px;
+}
+.ep-method.get{background:var(--green-light);color:var(--green);}
+.ep-method.post{background:var(--blue-light);color:var(--blue);}
+.ep-path{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--text);}
+.ep-desc{font-size:12px;color:var(--text3);margin-left:auto;}
+.ep-body{padding:16px;}
+.ep-body p{font-size:13px;color:var(--text2);line-height:1.7;}
+
+/* quick-start cards */
+.qs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0;}
+@media(max-width:640px){.qs-grid{grid-template-columns:1fr;}}
+.qs-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:12px;padding:20px 16px;
+  text-decoration:none;transition:border-color .15s,box-shadow .15s,transform .15s;
+  display:block;
+}
+.qs-card:hover{
+  border-color:var(--blue-border);
+  box-shadow:0 4px 16px rgba(55,95,246,.08);
+  transform:translateY(-2px);
+}
+.qs-icon{font-size:22px;margin-bottom:10px;display:block;}
+.qs-card h4{font-family:var(--head);font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.qs-card p{font-size:12px;color:var(--text2);line-height:1.55;}
+.qs-arrow{float:right;color:var(--blue);font-size:14px;}
+
+/* divider */
+.doc-divider{border:none;border-top:1px solid var(--border);margin:40px 0;}
+
+/* page nav */
+.page-nav{
+  display:flex;justify-content:space-between;gap:12px;
+  margin-top:56px;padding-top:24px;border-top:1px solid var(--border);
+}
+.page-nav-btn{
+  display:flex;flex-direction:column;gap:3px;
+  padding:14px 18px;border-radius:10px;
+  border:1px solid var(--border);background:var(--bg2);
+  text-decoration:none;flex:1;max-width:220px;
+  transition:border-color .15s,background .15s;
+}
+.page-nav-btn:hover{border-color:var(--blue-border);background:var(--blue-light);}
+.page-nav-btn.next{align-items:flex-end;}
+.pnb-label{font-size:11px;color:var(--text3);font-family:var(--mono);}
+.pnb-title{font-size:13px;font-weight:700;color:var(--text);font-family:var(--head);}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);padding:20px 32px;
+  text-align:center;font-size:12px;color:var(--text3);line-height:2;
+}
+footer a{color:var(--text2);text-decoration:none;}
+footer a:hover{color:var(--blue);}
+
+/* ── FADE ── */
+.fade-up{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease;}
+.fade-up.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- NAV (same as index) -->
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-mark"><img src="favicon/favicon.svg" alt="LCX AI"></div>
+      <div>
+        <div class="nav-name">Finance AI</div>
+        <div class="nav-by">by LCX</div>
+      </div>
+    </a>
+  </div>
+  <div class="nav-right nav-links">
+    <a href="feature.html">Features</a>
+    <a href="docs.html" class="active">Docs</a>
+    <a href="about.html">About</a>
+    <a href="#" class="nav-cta">Try Free →</a>
+  </div>
+</nav>
+
+<!-- LAYOUT -->
+<div class="doc-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-section">
+      <span class="sb-section-label">Getting Started</span>
+      <a class="sb-link active" onclick="showSection('intro',this)"><span class="sb-icon">👋</span>Introduction</a>
+      <a class="sb-link" onclick="showSection('quickstart',this)"><span class="sb-icon">⚡</span>Quick Start</a>
+      <a class="sb-link" onclick="showSection('auth',this)"><span class="sb-icon">🔑</span>Authentication</a>
+    </div>
+    <div class="sb-section">
+      <span class="sb-section-label">Core Concepts</span>
+      <a class="sb-link" onclick="showSection('search',this)"><span class="sb-icon">🔍</span>Search Modes</a>
+      <a class="sb-link" onclick="showSection('sources',this)"><span class="sb-icon">📡</span>Data Sources</a>
+      <a class="sb-link" onclick="showSection('models',this)"><span class="sb-icon">🤖</span>AI Models</a>
+      <a class="sb-link" onclick="showSection('routing',this)"><span class="sb-icon">🔀</span>Model Routing</a>
+    </div>
+    <div class="sb-section">
+      <span class="sb-section-label">API Reference</span>
+      <a class="sb-link" onclick="showSection('api-query',this)"><span class="sb-icon">&lt;/&gt;</span>Query Endpoint</a>
+      <a class="sb-link" onclick="showSection('api-lookout',this)"><span class="sb-icon">👁️</span>Lookout Agents<span class="sb-badge sb-badge-beta">Beta</span></a>
+      <a class="sb-link" onclick="showSection('api-sentiment',this)"><span class="sb-icon">📊</span>Sentiment API</a>
+      <a class="sb-link" onclick="showSection('api-errors',this)"><span class="sb-icon">⚠️</span>Errors & Limits</a>
+    </div>
+    <div class="sb-section">
+      <span class="sb-section-label">Guides</span>
+      <a class="sb-link" onclick="showSection('guide-sentiment',this)"><span class="sb-icon">📈</span>Sentiment Research</a>
+      <a class="sb-link" onclick="showSection('guide-deep',this)"><span class="sb-icon">🔬</span>Deep Research<span class="sb-badge sb-badge-new">New</span></a>
+      <a class="sb-link" onclick="showSection('guide-lookout',this)"><span class="sb-icon">⏰</span>Setting Up Lookouts</a>
+    </div>
+    <div class="sb-section">
+      <span class="sb-section-label">Resources</span>
+      <a class="sb-link" onclick="showSection('changelog',this)"><span class="sb-icon">📋</span>Changelog</a>
+      <a class="sb-link" onclick="showSection('faq',this)"><span class="sb-icon">💬</span>FAQ</a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="doc-content">
+
+    <!-- ── INTRO ── -->
+    <div id="sec-intro" class="doc-section fade-up">
+      <div class="doc-hero">
+        <div class="breadcrumb">
+          <a href="#">Docs</a><span>/</span><span>Introduction</span>
+        </div>
+        <h1>LCX AI Documentation</h1>
+        <p>Everything you need to use, integrate, and build with LCX AI — the lcx ai–powered financial research platform by LCX.</p>
+        <div class="doc-meta">
+          <span class="doc-meta-item">📅 Updated Feb 2026</span>
+          <span class="doc-meta-item">📖 ~15 min read</span>
+          <span class="doc-meta-item" style="color:var(--green);">● v2.1 — Current</span>
+        </div>
+      </div>
+
+      <div class="doc-h2">What is LCX AI?</div>
+      <p class="doc-p">LCX AI is an <strong>AI-powered financial research platform</strong> built by LCX AI Labs. It combines live market data, real-time X and Reddit sentiment, and frontier LLM reasoning into a single, focused research environment.</p>
+      <p class="doc-p">Unlike general-purpose AI assistants, lcx ai is scoped exclusively to financial topics — markets, assets, macro trends, sentiment, and earnings — so every answer is grounded in relevant, verifiable data.</p>
+
+      <div class="callout info">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <strong>Not financial advice</strong>
+          LCX AI is a research and information tool. Nothing on this platform constitutes financial advice. All investment decisions are the sole responsibility of the user.
+        </div>
+      </div>
+
+      <div class="doc-h2">Core capabilities</div>
+      <div class="qs-grid">
+        <a class="qs-card" onclick="showSection('search',document.querySelector('[onclick*=search]'))">
+          <span class="qs-icon">🔍</span>
+          <h4>Search Modes <span class="qs-arrow">→</span></h4>
+          <p>6 specialised modes — market, X, Reddit, deep, fact-check, video.</p>
+        </a>
+        <a class="qs-card" onclick="showSection('models',document.querySelector('[onclick*=models]'))">
+          <span class="qs-icon">🤖</span>
+          <h4>AI Models <span class="qs-arrow">→</span></h4>
+          <p>14 frontier models from 6 providers, auto-routed per query.</p>
+        </a>
+        <a class="qs-card" onclick="showSection('api-lookout',document.querySelector('[onclick*=api-lookout]'))">
+          <span class="qs-icon">👁️</span>
+          <h4>Lookout Agents <span class="qs-arrow">→</span></h4>
+          <p>Scheduled research agents that monitor and email digests.</p>
+        </a>
+      </div>
+
+      <div class="doc-h2">How it works</div>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Ask a question</h4>
+            <p>Type any finance question in natural language. Use <code>/mode</code> prefix to select a specific search mode, or <code>@source</code> to target a specific data source.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Parallel source scanning</h4>
+            <p>LCX AI simultaneously queries live market data, X, and Reddit — pulling the most relevant signals from the last minutes, hours, or days.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>AI synthesis & citation</h4>
+            <p>The best-fit LLM synthesises all retrieved data into a structured answer. Every claim is attributed to its source — click any citation to verify.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <div></div>
+        <a class="page-nav-btn next" onclick="showSection('quickstart',document.querySelector('[onclick*=quickstart]'))">
+          <span class="pnb-label">Next →</span>
+          <span class="pnb-title">Quick Start</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── QUICK START ── -->
+    <div id="sec-quickstart" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>Quick Start</span></div>
+        <h1>Quick Start</h1>
+        <p>Get your first LCX AI response in under 2 minutes — no account required for the web interface.</p>
+        <div class="doc-meta">
+          <span class="doc-meta-item">⏱ 2 min</span>
+          <span class="doc-meta-item">🔑 API key required for API access</span>
+        </div>
+      </div>
+
+      <div class="doc-h2">Option A — Web Interface</div>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body"><h4>Open LCX AI</h4><p>Navigate to <code>financeai.lcx.com</code>. No signup needed to start a free search.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body"><h4>Type your question</h4><p>Ask anything: <em>"What is Reddit saying about $NVDA earnings this week?"</em> — plain English, no syntax needed.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body"><h4>Get your answer</h4><p>LCX AI returns a cited response in ~2.4 seconds. Click any inline citation to verify the source.</p></div>
+        </div>
+      </div>
+
+      <div class="doc-h2">Option B — REST API</div>
+      <p class="doc-p">For programmatic access, use the LCX AI REST API. You'll need a Pro or Team subscription to get an API key.</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">bash — cURL</span>
+          <button class="code-copy" onclick="copyCode(this)">Copy</button>
+        </div>
+        <pre><span class="c"># Install via npm (optional JS SDK)</span>
+npm install @lcx/finance-ai
+
+<span class="c"># Or use cURL directly</span>
+<span class="k">curl</span> -X POST https://api.financeai.lcx.com/v1/query \
+  -H <span class="s">"Authorization: Bearer YOUR_API_KEY"</span> \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -d <span class="s">'{
+    "query": "What is X saying about Bitcoin right now?",
+    "mode": "x",
+    "model": "auto"
+  }'</span></pre>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">javascript</span>
+          <button class="code-copy" onclick="copyCode(this)">Copy</button>
+        </div>
+        <pre><span class="k">import</span> FinanceAI <span class="k">from</span> <span class="s">'@lcx/finance-ai'</span>;
+
+<span class="k">const</span> client = <span class="k">new</span> <span class="n">FinanceAI</span>({
+  apiKey: <span class="n">process</span>.env.<span class="v">FINANCE_AI_KEY</span>
+});
+
+<span class="k">const</span> result = <span class="k">await</span> client.query({
+  query: <span class="s">"Compare analyst sentiment on $AAPL vs $MSFT"</span>,
+  mode:  <span class="s">"market"</span>,  <span class="c">// market | x | reddit | deep | fact | video</span>
+  model: <span class="s">"auto"</span>     <span class="c">// auto-routed, or specify e.g. "claude-sonnet-4.5"</span>
+});
+
+<span class="n">console</span>.log(result.answer);    <span class="c">// synthesised answer</span>
+<span class="n">console</span>.log(result.citations); <span class="c">// array of source references</span>
+<span class="n">console</span>.log(result.sentiment); <span class="c">// { bullish: 78, bearish: 22 }</span></pre>
+      </div>
+
+      <div class="callout tip">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <strong>Pro tip: use "auto" model routing</strong>
+          Set <code>model: "auto"</code> to let LCX AI pick the best LLM for your query type. Manual model selection is available for advanced use cases.
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('intro',document.querySelector('[onclick*=intro]'))">
+          <span class="pnb-label">← Previous</span>
+          <span class="pnb-title">Introduction</span>
+        </a>
+        <a class="page-nav-btn next" onclick="showSection('auth',document.querySelector('[onclick*=auth]'))">
+          <span class="pnb-label">Next →</span>
+          <span class="pnb-title">Authentication</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── AUTH ── -->
+    <div id="sec-auth" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>Authentication</span></div>
+        <h1>Authentication</h1>
+        <p>LCX AI uses bearer token authentication for all API requests.</p>
+      </div>
+
+      <div class="doc-h2">Getting an API key</div>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body"><h4>Upgrade to Pro or Team</h4><p>API access is available on Pro ($19/mo) and Team ($49/mo) plans. Free tier is limited to the web interface.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body"><h4>Generate your key</h4><p>Go to <strong>Settings → API Keys → New Key</strong>. Keys are prefixed with <code>fai_live_</code>.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body"><h4>Store it securely</h4><p>Never expose your API key in client-side code. Store it as an environment variable: <code>FINANCE_AI_KEY</code>.</p></div>
+        </div>
+      </div>
+
+      <div class="doc-h2">Using the key</div>
+      <p class="doc-p">Pass your API key in the <code>Authorization</code> header of every request:</p>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">http header</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div>
+        <pre>Authorization: Bearer fai_live_xxxxxxxxxxxxxxxxxxxx</pre>
+      </div>
+
+      <div class="callout warn">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body">
+          <strong>Keep your key private</strong>
+          Do not commit API keys to source control. Rotate keys immediately from the dashboard if you suspect a leak. Leaked keys can be disabled instantly under Settings → API Keys.
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('quickstart',document.querySelector('[onclick*=quickstart]'))">
+          <span class="pnb-label">← Previous</span><span class="pnb-title">Quick Start</span>
+        </a>
+        <a class="page-nav-btn next" onclick="showSection('search',document.querySelector('[onclick*=search]'))">
+          <span class="pnb-label">Next →</span><span class="pnb-title">Search Modes</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── SEARCH MODES ── -->
+    <div id="sec-search" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>Search Modes</span></div>
+        <h1>Search Modes</h1>
+        <p>LCX AI supports 6 specialised modes, each optimised for a specific research task. Activate them with the <code>/</code> prefix in the UI, or set the <code>mode</code> parameter in the API.</p>
+      </div>
+
+      <div class="mode-chips">
+        <span class="mode-chip" style="background:var(--blue-light);border-color:var(--blue-border);color:var(--blue);">/market</span>
+        <span class="mode-chip" style="background:var(--bg3);border-color:var(--border2);color:var(--text2);">/x</span>
+        <span class="mode-chip" style="background:var(--red-light);border-color:var(--red-border);color:var(--red);">/reddit</span>
+        <span class="mode-chip" style="background:var(--gold-light);border-color:var(--gold-border);color:var(--gold);">/deep</span>
+        <span class="mode-chip" style="background:var(--green-light);border-color:var(--green-border);color:var(--green);">/fact</span>
+        <span class="mode-chip" style="background:var(--purple-light);border-color:var(--purple-border);color:var(--purple);">/video</span>
+      </div>
+
+      <div class="doc-h3">/market — Market Search (default)</div>
+      <p class="doc-p">The default mode. Queries live price data, earnings, indices, crypto rates, and macroeconomic indicators. Best for: price lookups, earnings summaries, index performance, and macro snapshots.</p>
+
+      <div class="doc-h3">/x — X / Twitter Search</div>
+      <p class="doc-p">Scans real-time X posts from analysts, investors, and financial commentators. Uses Grok's native X integration when available for maximum freshness. Best for: breaking news, analyst hot-takes, real-time sentiment.</p>
+
+      <div class="doc-h3">/reddit — Reddit Search</div>
+      <p class="doc-p">Searches r/WallStreetBets, r/investing, r/CryptoCurrency, r/stocks and other financial subreddits. Best for: retail sentiment, meme stock activity, community conviction signals.</p>
+
+      <div class="doc-h3">/deep — Deep Research</div>
+      <p class="doc-p">Agentic mode. LCX AI decomposes your query into sub-tasks, searches multiple sources in parallel, and produces a structured, cited research report. Takes 10–30s. Best for: thorough company analysis, macro deep-dives, comparative research.</p>
+
+      <div class="doc-h3">/fact — Fact Check</div>
+      <p class="doc-p">Cross-references a claim against primary financial sources — SEC filings, earnings releases, official central bank statements. Returns a verdict with supporting evidence. Best for: verifying market claims before acting on them.</p>
+
+      <div class="doc-h3">/video — Video & Media</div>
+      <p class="doc-p"><strong>Beta.</strong> Searches financial video content — earnings calls, CNBC segments, analyst interviews. Extracts spoken insights and timestamps. Best for: capturing spoken guidance from earnings calls.</p>
+
+      <div class="callout info">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <strong>@source targeting</strong>
+          You can also target specific sources inline: <code>@x</code>, <code>@reddit</code>, <code>@market</code>. Example: <em>"What is @x saying about the Fed decision today?"</em>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('auth',document.querySelector('[onclick*=auth]'))">
+          <span class="pnb-label">← Previous</span><span class="pnb-title">Authentication</span>
+        </a>
+        <a class="page-nav-btn next" onclick="showSection('api-query',document.querySelector('[onclick*=api-query]'))">
+          <span class="pnb-label">Next →</span><span class="pnb-title">Query Endpoint</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── API: QUERY ── -->
+    <div id="sec-api-query" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>API Reference</span><span>/</span><span>Query</span></div>
+        <h1>Query Endpoint</h1>
+        <p>The core endpoint for asking LCX AI a question and receiving a synthesised, cited response.</p>
+      </div>
+
+      <div class="endpoint-card">
+        <div class="ep-header">
+          <span class="ep-method post">POST</span>
+          <span class="ep-path">https://api.financeai.lcx.com/v1/query</span>
+          <span class="ep-desc">Requires auth</span>
+        </div>
+        <div class="ep-body">
+          <p>Submits a natural language finance query and returns a synthesised answer with citations, sentiment scores, and metadata.</p>
+        </div>
+      </div>
+
+      <div class="doc-h2">Request body</div>
+      <table class="param-table">
+        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">query</span></td><td><span class="param-type">string</span></td><td><span class="param-req req-yes">Required</span></td><td>Your finance question in natural language. Max 1,000 chars.</td></tr>
+          <tr><td><span class="param-name">mode</span></td><td><span class="param-type">string</span></td><td><span class="param-req req-no">Optional</span></td><td><code>market</code> | <code>x</code> | <code>reddit</code> | <code>deep</code> | <code>fact</code> | <code>video</code>. Default: <code>market</code>.</td></tr>
+          <tr><td><span class="param-name">model</span></td><td><span class="param-type">string</span></td><td><span class="param-req req-no">Optional</span></td><td>LLM to use. Default: <code>auto</code>. See <a href="#">Models reference</a> for valid values.</td></tr>
+          <tr><td><span class="param-name">sources</span></td><td><span class="param-type">array</span></td><td><span class="param-req req-no">Optional</span></td><td>Restrict sources: <code>["market","x","reddit"]</code>. Default: all.</td></tr>
+          <tr><td><span class="param-name">time_range</span></td><td><span class="param-type">string</span></td><td><span class="param-req req-no">Optional</span></td><td><code>1h</code> | <code>24h</code> | <code>7d</code> | <code>30d</code>. Default: <code>24h</code>.</td></tr>
+          <tr><td><span class="param-name">stream</span></td><td><span class="param-type">boolean</span></td><td><span class="param-req req-no">Optional</span></td><td>Stream response tokens via SSE. Default: <code>false</code>.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="doc-h2">Response</div>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">json — response</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div>
+        <pre>{
+  <span class="s">"id"</span>:        <span class="s">"qry_01jx8kf3n..."</span>,
+  <span class="s">"query"</span>:     <span class="s">"What is X saying about Bitcoin right now?"</span>,
+  <span class="s">"mode"</span>:      <span class="s">"x"</span>,
+  <span class="s">"model"</span>:     <span class="s">"grok-3"</span>,
+  <span class="s">"answer"</span>:    <span class="s">"X sentiment on Bitcoin is broadly bullish today, with..."</span>,
+  <span class="s">"citations"</span>: [
+    {
+      <span class="s">"id"</span>:     <span class="s">"cit_1"</span>,
+      <span class="s">"source"</span>: <span class="s">"x"</span>,
+      <span class="s">"author"</span>: <span class="s">"@plan_b_btc"</span>,
+      <span class="s">"url"</span>:    <span class="s">"https://x.com/..."</span>,
+      <span class="s">"posted"</span>: <span class="s">"2026-02-26T09:14:00Z"</span>
+    }
+  ],
+  <span class="s">"sentiment"</span>: { <span class="s">"bullish"</span>: <span class="v">74</span>, <span class="s">"bearish"</span>: <span class="v">26</span>, <span class="s">"posts_scanned"</span>: <span class="v">3841</span> },
+  <span class="s">"latency_ms"</span>: <span class="v">2340</span>,
+  <span class="s">"created_at"</span>: <span class="s">"2026-02-26T09:15:03Z"</span>
+}</pre>
+      </div>
+
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('search',document.querySelector('[onclick*=search]'))">
+          <span class="pnb-label">← Previous</span><span class="pnb-title">Search Modes</span>
+        </a>
+        <a class="page-nav-btn next" onclick="showSection('api-errors',document.querySelector('[onclick*=api-errors]'))">
+          <span class="pnb-label">Next →</span><span class="pnb-title">Errors & Limits</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── API: LOOKOUT ── -->
+    <div id="sec-api-lookout" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>API Reference</span><span>/</span><span>Lookout Agents</span></div>
+        <h1>Lookout Agents API <span style="font-size:12px;font-family:var(--mono);background:var(--gold-light);color:var(--gold);border:1px solid var(--gold-border);padding:2px 8px;border-radius:4px;vertical-align:middle;margin-left:8px;">Beta</span></h1>
+        <p>Programmatically create and manage Lookout agents — scheduled research tasks that monitor topics and send email digests.</p>
+      </div>
+
+      <div class="endpoint-card">
+        <div class="ep-header"><span class="ep-method post">POST</span><span class="ep-path">/v1/lookouts</span><span class="ep-desc">Create a Lookout</span></div>
+        <div class="ep-body"><p>Creates a new scheduled Lookout agent for a given topic, frequency, and source set.</p></div>
+      </div>
+      <div class="endpoint-card">
+        <div class="ep-header"><span class="ep-method get">GET</span><span class="ep-path">/v1/lookouts</span><span class="ep-desc">List Lookouts</span></div>
+        <div class="ep-body"><p>Returns all active Lookout agents for the authenticated account.</p></div>
+      </div>
+      <div class="endpoint-card">
+        <div class="ep-header"><span class="ep-method get">GET</span><span class="ep-path">/v1/lookouts/:id/results</span><span class="ep-desc">Get Results</span></div>
+        <div class="ep-body"><p>Returns the most recent digest results for a specific Lookout agent.</p></div>
+      </div>
+
+      <div class="doc-h2">Create Lookout — Request body</div>
+      <table class="param-table">
+        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">topic</span></td><td><span class="param-type">string</span></td><td><span class="param-req req-yes">Required</span></td><td>Topic to monitor. E.g. <code>"$BTC sentiment"</code> or <code>"Fed rate policy"</code>.</td></tr>
+          <tr><td><span class="param-name">cadence</span></td><td><span class="param-type">string</span></td><td><span class="param-req req-yes">Required</span></td><td><code>hourly</code> | <code>daily</code> | <code>weekly</code>.</td></tr>
+          <tr><td><span class="param-name">sources</span></td><td><span class="param-type">array</span></td><td><span class="param-req req-no">Optional</span></td><td>Sources to scan. Default: <code>["market","x","reddit"]</code>.</td></tr>
+          <tr><td><span class="param-name">email</span></td><td><span class="param-type">string</span></td><td><span class="param-req req-no">Optional</span></td><td>Email address for digest delivery. Defaults to account email.</td></tr>
+          <tr><td><span class="param-name">alert_on</span></td><td><span class="param-type">array</span></td><td><span class="param-req req-no">Optional</span></td><td>Trigger conditions: <code>["sentiment_shift","volume_spike"]</code>.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('api-query',document.querySelector('[onclick*=api-query]'))">
+          <span class="pnb-label">← Previous</span><span class="pnb-title">Query Endpoint</span>
+        </a>
+        <a class="page-nav-btn next" onclick="showSection('api-errors',document.querySelector('[onclick*=api-errors]'))">
+          <span class="pnb-label">Next →</span><span class="pnb-title">Errors & Limits</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── API: SENTIMENT ── -->
+    <div id="sec-api-sentiment" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>API Reference</span><span>/</span><span>Sentiment API</span></div>
+        <h1>Sentiment API</h1>
+        <p>Dedicated endpoint for structured bullish/bearish sentiment scores across X and Reddit, without a full answer synthesis.</p>
+      </div>
+      <div class="endpoint-card">
+        <div class="ep-header"><span class="ep-method get">GET</span><span class="ep-path">/v1/sentiment</span><span class="ep-desc">Get sentiment score</span></div>
+        <div class="ep-body"><p>Returns a sentiment breakdown for any ticker or topic across X and/or Reddit, with post volume and trend direction.</p></div>
+      </div>
+      <div class="doc-h2">Query parameters</div>
+      <table class="param-table">
+        <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">ticker</span></td><td><span class="param-type">string</span></td><td><span class="param-req req-yes">Required</span></td><td>Asset ticker or keyword. E.g. <code>NVDA</code>, <code>BTC</code>, <code>interest rates</code>.</td></tr>
+          <tr><td><span class="param-name">sources</span></td><td><span class="param-type">string</span></td><td><span class="param-req req-no">Optional</span></td><td>Comma-separated: <code>x,reddit</code>. Default: both.</td></tr>
+          <tr><td><span class="param-name">time_range</span></td><td><span class="param-type">string</span></td><td><span class="param-req req-no">Optional</span></td><td><code>1h</code> | <code>24h</code> | <code>7d</code>. Default: <code>24h</code>.</td></tr>
+        </tbody>
+      </table>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">json — response</span><button class="code-copy" onclick="copyCode(this)">Copy</button></div>
+        <pre>{
+  <span class="s">"ticker"</span>:    <span class="s">"NVDA"</span>,
+  <span class="s">"time_range"</span>:<span class="s">"24h"</span>,
+  <span class="s">"overall"</span>:   { <span class="s">"bullish"</span>: <span class="v">78</span>, <span class="s">"bearish"</span>: <span class="v">22</span>, <span class="s">"posts"</span>: <span class="v">4200</span> },
+  <span class="s">"by_source"</span>: {
+    <span class="s">"x"</span>:      { <span class="s">"bullish"</span>: <span class="v">81</span>, <span class="s">"bearish"</span>: <span class="v">19</span>, <span class="s">"posts"</span>: <span class="v">2950</span> },
+    <span class="s">"reddit"</span>: { <span class="s">"bullish"</span>: <span class="v">71</span>, <span class="s">"bearish"</span>: <span class="v">29</span>, <span class="s">"posts"</span>: <span class="v">1250</span> }
+  },
+  <span class="s">"trend"</span>:     <span class="s">"rising"</span>,
+  <span class="s">"updated_at"</span>:<span class="s">"2026-02-26T09:30:00Z"</span>
+}</pre>
+      </div>
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('api-lookout',document.querySelector('[onclick*=api-lookout]'))">
+          <span class="pnb-label">← Previous</span><span class="pnb-title">Lookout Agents</span>
+        </a>
+        <a class="page-nav-btn next" onclick="showSection('api-errors',document.querySelector('[onclick*=api-errors]'))">
+          <span class="pnb-label">Next →</span><span class="pnb-title">Errors & Limits</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── ERRORS ── -->
+    <div id="sec-api-errors" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>API Reference</span><span>/</span><span>Errors & Limits</span></div>
+        <h1>Errors &amp; Rate Limits</h1>
+        <p>LCX AI uses standard HTTP status codes. All errors return a JSON body with a <code>code</code> and <code>message</code>.</p>
+      </div>
+      <div class="doc-h2">HTTP Status Codes</div>
+      <table class="param-table">
+        <thead><tr><th>Status</th><th>Code</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name" style="color:var(--green);">200</span></td><td><code>ok</code></td><td>Success.</td></tr>
+          <tr><td><span class="param-name" style="color:var(--red);">400</span></td><td><code>bad_request</code></td><td>Invalid parameters. Check the <code>message</code> field.</td></tr>
+          <tr><td><span class="param-name" style="color:var(--red);">401</span></td><td><code>unauthorized</code></td><td>Missing or invalid API key.</td></tr>
+          <tr><td><span class="param-name" style="color:var(--red);">429</span></td><td><code>rate_limited</code></td><td>Too many requests. See limits below.</td></tr>
+          <tr><td><span class="param-name" style="color:var(--red);">500</span></td><td><code>internal_error</code></td><td>Something went wrong on our end. Retry after 5s.</td></tr>
+        </tbody>
+      </table>
+      <div class="doc-h2">Rate Limits</div>
+      <table class="param-table">
+        <thead><tr><th>Plan</th><th>Queries / day</th><th>Requests / min</th><th>Deep Research</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">Free</span></td><td>20</td><td>5</td><td>—</td></tr>
+          <tr><td><span class="param-name">Pro</span></td><td>Unlimited</td><td>60</td><td>10 / day</td></tr>
+          <tr><td><span class="param-name">Team</span></td><td>Unlimited</td><td>300</td><td>Unlimited</td></tr>
+        </tbody>
+      </table>
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('api-sentiment',document.querySelector('[onclick*=api-sentiment]'))">
+          <span class="pnb-label">← Previous</span><span class="pnb-title">Sentiment API</span>
+        </a>
+        <a class="page-nav-btn next" onclick="showSection('faq',document.querySelector('[onclick*=faq]'))">
+          <span class="pnb-label">Next →</span><span class="pnb-title">FAQ</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── DATA SOURCES ── -->
+    <div id="sec-sources" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>Core Concepts</span><span>/</span><span>Data Sources</span></div>
+        <h1>Data Sources</h1>
+        <p>LCX AI pulls from three live data source categories, all scanned in parallel per query.</p>
+      </div>
+      <div class="doc-h3">📈 Market & Finance Data</div>
+      <p class="doc-p">Includes real-time equity prices, crypto rates, FX pairs, commodity prices, index values, earnings data, dividend history, and macroeconomic indicators (CPI, Fed funds rate, GDP estimates). Data is refreshed every 15 seconds for prices and every minute for derived indicators.</p>
+      <div class="doc-h3">𝕏 X / Twitter</div>
+      <p class="doc-p">Real-time posts from financial accounts, analysts, fund managers, and retail investors on X. LCX AI uses Grok's native X API integration where available for sub-minute freshness. Non-Grok models use LCX AI's own X connector with a ~5 minute delay.</p>
+      <div class="doc-h3">🔴 Reddit</div>
+      <p class="doc-p">Posts, comments, and upvote signals from key financial subreddits: <code>r/wallstreetbets</code>, <code>r/investing</code>, <code>r/stocks</code>, <code>r/CryptoCurrency</code>, <code>r/SecurityAnalysis</code>, <code>r/options</code>, and more. Refreshed every 2 minutes.</p>
+      <div class="callout info">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body"><strong>Upcoming sources</strong>SEC filings (EDGAR), earnings call transcripts, and financial news wires are currently in development and will be added in Q4 2025.</div>
+      </div>
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('search',document.querySelector('[onclick*=search]'))">
+          <span class="pnb-label">← Previous</span><span class="pnb-title">Search Modes</span>
+        </a>
+        <a class="page-nav-btn next" onclick="showSection('models',document.querySelector('[onclick*=models]'))">
+          <span class="pnb-label">Next →</span><span class="pnb-title">AI Models</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── MODELS ── -->
+    <div id="sec-models" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>Core Concepts</span><span>/</span><span>AI Models</span></div>
+        <h1>AI Models</h1>
+        <p>LCX AI integrates 14 frontier models across 6 providers. Use <code>model: "auto"</code> for automatic routing, or specify a model directly.</p>
+      </div>
+      <div class="doc-h2">Available model identifiers</div>
+      <table class="param-table">
+        <thead><tr><th>Model ID</th><th>Provider</th><th>Best for</th><th>Tier</th></tr></thead>
+        <tbody>
+          <tr><td><span class="param-name">claude-sonnet-4.5</span></td><td>Anthropic</td><td>Default — synthesis, citations</td><td><span class="param-req req-no">Free+</span></td></tr>
+          <tr><td><span class="param-name">claude-haiku-4.5</span></td><td>Anthropic</td><td>Fast lookups</td><td><span class="param-req req-no">Free+</span></td></tr>
+          <tr><td><span class="param-name">claude-opus-4</span></td><td>Anthropic</td><td>Deep research</td><td><span class="param-req req-yes">Pro</span></td></tr>
+          <tr><td><span class="param-name">gemini-2.5-flash</span></td><td>Google</td><td>Fast, large context</td><td><span class="param-req req-no">Free+</span></td></tr>
+          <tr><td><span class="param-name">gemini-2.5-pro</span></td><td>Google</td><td>Complex reasoning</td><td><span class="param-req req-yes">Pro</span></td></tr>
+          <tr><td><span class="param-name">gpt-4o</span></td><td>OpenAI</td><td>Versatile all-rounder</td><td><span class="param-req req-no">Free+</span></td></tr>
+          <tr><td><span class="param-name">gpt-4o-mini</span></td><td>OpenAI</td><td>High-volume, fast</td><td><span class="param-req req-no">Free+</span></td></tr>
+          <tr><td><span class="param-name">o3-mini</span></td><td>OpenAI</td><td>Financial maths</td><td><span class="param-req req-yes">Pro</span></td></tr>
+          <tr><td><span class="param-name">deepseek-r1</span></td><td>DeepSeek</td><td>Quantitative reasoning</td><td><span class="param-req req-yes">Pro</span></td></tr>
+          <tr><td><span class="param-name">deepseek-v3</span></td><td>DeepSeek</td><td>Cost-efficient research</td><td><span class="param-req req-no">Free+</span></td></tr>
+          <tr><td><span class="param-name">grok-3</span></td><td>xAI</td><td>X sentiment (native)</td><td><span class="param-req req-yes">Pro</span></td></tr>
+          <tr><td><span class="param-name">grok-3-mini</span></td><td>xAI</td><td>Fast X search</td><td><span class="param-req req-no">Free+</span></td></tr>
+          <tr><td><span class="param-name">mistral-large</span></td><td>Mistral</td><td>Multilingual markets</td><td><span class="param-req req-no">Free+</span></td></tr>
+          <tr><td><span class="param-name">mistral-small</span></td><td>Mistral</td><td>High-volume screener</td><td><span class="param-req req-no">Free+</span></td></tr>
+        </tbody>
+      </table>
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('sources',document.querySelector('[onclick*=sources]'))">
+          <span class="pnb-label">← Previous</span><span class="pnb-title">Data Sources</span>
+        </a>
+        <a class="page-nav-btn next" onclick="showSection('routing',document.querySelector('[onclick*=routing]'))">
+          <span class="pnb-label">Next →</span><span class="pnb-title">Model Routing</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── ROUTING ── -->
+    <div id="sec-routing" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>Core Concepts</span><span>/</span><span>Model Routing</span></div>
+        <h1>Model Routing</h1>
+        <p>When <code>model: "auto"</code> is set, LCX AI's routing engine classifies the query and selects the best model automatically.</p>
+      </div>
+      <div class="doc-h2">How routing works</div>
+      <p class="doc-p">The routing engine scores each incoming query across three dimensions — <strong>complexity</strong>, <strong>source affinity</strong>, and <strong>latency requirement</strong> — and dispatches it to the highest-scoring available model for the user's plan tier.</p>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">routing logic — pseudocode</span></div>
+        <pre><span class="k">if</span> query.is_simple_lookup():
+    <span class="k">return</span> <span class="s">"claude-haiku-4.5"</span>  <span class="c"># fast</span>
+<span class="k">elif</span> query.needs_x_sentiment():
+    <span class="k">return</span> <span class="s">"grok-3"</span>            <span class="c"># native X access</span>
+<span class="k">elif</span> query.mode == <span class="s">"deep"</span>:
+    <span class="k">return</span> <span class="s">"claude-opus-4"</span>     <span class="c"># best reasoning</span>
+<span class="k">elif</span> query.needs_math():
+    <span class="k">return</span> <span class="s">"deepseek-r1"</span>       <span class="c"># quantitative</span>
+<span class="k">else</span>:
+    <span class="k">return</span> <span class="s">"claude-sonnet-4.5"</span> <span class="c"># default</span></pre>
+      </div>
+      <div class="callout tip">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body"><strong>Override anytime</strong>Set <code>model: "gpt-4o"</code> (or any valid model ID) to bypass routing and use a specific model. Useful for benchmarking or preference-based use cases.</div>
+      </div>
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('models',document.querySelector('[onclick*=models]'))">
+          <span class="pnb-label">← Previous</span><span class="pnb-title">AI Models</span>
+        </a>
+        <a class="page-nav-btn next" onclick="showSection('api-query',document.querySelector('[onclick*=api-query]'))">
+          <span class="pnb-label">Next →</span><span class="pnb-title">Query Endpoint</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── GUIDES ── -->
+    <div id="sec-guide-sentiment" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>Guides</span><span>/</span><span>Sentiment Research</span></div>
+        <h1>Guide: Sentiment Research</h1>
+        <p>How to use LCX AI to gauge market sentiment across X and Reddit — with worked examples.</p>
+      </div>
+      <div class="doc-h2">The right query structure</div>
+      <p class="doc-p">Sentiment queries work best when they specify a <strong>ticker or topic</strong>, a <strong>source</strong>, and optionally a <strong>time frame</strong>. Vague queries return broader answers; specific ones return sharper signals.</p>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">example queries</span></div>
+        <pre><span class="c"># Broad X sentiment</span>
+<span class="s">"What is X saying about Bitcoin today?"</span>
+
+<span class="c"># Reddit community pulse</span>
+<span class="s">"Is r/WallStreetBets bullish or bearish on $NVDA this week?"</span>
+
+<span class="c"># Cross-source comparison</span>
+<span class="s">"Compare X vs Reddit sentiment on $AAPL after yesterday's earnings"</span>
+
+<span class="c"># Macro sentiment</span>
+<span class="s">"What's the general mood on interest rates across Reddit right now?"</span></pre>
+      </div>
+      <div class="doc-h2">Interpreting sentiment scores</div>
+      <p class="doc-p">The <code>sentiment</code> object returns <code>bullish</code> and <code>bearish</code> as percentages that sum to 100. A score of <strong>70+ bullish</strong> signals strong community conviction. Scores between 45–55 indicate neutral or divided sentiment. Always check <code>posts_scanned</code> — a 90% bullish signal from 12 posts carries far less weight than from 4,000.</p>
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('api-errors',document.querySelector('[onclick*=api-errors]'))">
+          <span class="pnb-label">← Previous</span><span class="pnb-title">Errors & Limits</span>
+        </a>
+        <a class="page-nav-btn next" onclick="showSection('guide-deep',document.querySelector('[onclick*=guide-deep]'))">
+          <span class="pnb-label">Next →</span><span class="pnb-title">Deep Research</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="sec-guide-deep" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>Guides</span><span>/</span><span>Deep Research</span></div>
+        <h1>Guide: Deep Research Mode</h1>
+        <p>Deep Research is LCX AI's agentic multi-step mode — best for thorough company analysis, macro reports, and comparative research.</p>
+      </div>
+      <div class="doc-h2">When to use Deep Research</div>
+      <p class="doc-p">Use <code>/deep</code> when you need a <strong>comprehensive, multi-source answer</strong> — not a quick fact. It takes 10–30 seconds but returns a structured report with sections, citations, and a sentiment summary.</p>
+      <div class="callout warn">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body"><strong>Rate limited</strong>Deep Research is capped at 10 queries/day on Pro and unlimited on Team. Each deep query counts as 5× against API rate limits.</div>
+      </div>
+      <div class="doc-h2">Example deep queries</div>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">example</span></div>
+        <pre><span class="c">// API usage</span>
+<span class="k">const</span> result = <span class="k">await</span> client.query({
+  query: <span class="s">"Give me a full breakdown of $TSLA's Q4 2025 earnings, analyst reactions on X, and Reddit sentiment"</span>,
+  mode:  <span class="s">"deep"</span>,
+  model: <span class="s">"auto"</span>   <span class="c">// routes to claude-opus-4</span>
+});
+
+<span class="c">// result.answer is a multi-section markdown report</span>
+<span class="c">// result.citations may contain 20+ sources</span></pre>
+      </div>
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('guide-sentiment',document.querySelector('[onclick*=guide-sentiment]'))">
+          <span class="pnb-label">← Previous</span><span class="pnb-title">Sentiment Research</span>
+        </a>
+        <a class="page-nav-btn next" onclick="showSection('guide-lookout',document.querySelector('[onclick*=guide-lookout]'))">
+          <span class="pnb-label">Next →</span><span class="pnb-title">Setting Up Lookouts</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="sec-guide-lookout" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>Guides</span><span>/</span><span>Setting Up Lookouts</span></div>
+        <h1>Guide: Setting Up Lookout Agents</h1>
+        <p>Lookout agents run recurring LCX AI research on your behalf and deliver email digests on a schedule.</p>
+      </div>
+      <div class="doc-h2">Creating your first Lookout</div>
+      <div class="step-list">
+        <div class="step-item"><div class="step-num">1</div><div class="step-body"><h4>Open the Lookout panel</h4><p>In the sidebar, click <strong>Lookout</strong>. Pro and Team users can create up to 5 and unlimited agents respectively.</p></div></div>
+        <div class="step-item"><div class="step-num">2</div><div class="step-body"><h4>Define your topic</h4><p>Enter a specific topic: <em>"$BTC sentiment on X"</em>, <em>"Fed rate decision"</em>, or <em>"WSB trending tickers"</em>. More specific topics return more actionable digests.</p></div></div>
+        <div class="step-item"><div class="step-num">3</div><div class="step-body"><h4>Choose cadence and sources</h4><p>Select hourly, daily, or weekly. Choose which sources to scan. Set your email address for delivery.</p></div></div>
+        <div class="step-item"><div class="step-num">4</div><div class="step-body"><h4>Set alert conditions (optional)</h4><p>Enable alerts for <strong>sentiment shifts</strong> (>20pt swing) or <strong>volume spikes</strong> (>3× baseline post volume) for instant notifications.</p></div></div>
+      </div>
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('guide-deep',document.querySelector('[onclick*=guide-deep]'))">
+          <span class="pnb-label">← Previous</span><span class="pnb-title">Deep Research</span>
+        </a>
+        <a class="page-nav-btn next" onclick="showSection('faq',document.querySelector('[onclick*=faq]'))">
+          <span class="pnb-label">Next →</span><span class="pnb-title">FAQ</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── CHANGELOG ── -->
+    <div id="sec-changelog" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>Changelog</span></div>
+        <h1>Changelog</h1>
+        <p>What's new in LCX AI. Updates are shipped continuously.</p>
+      </div>
+      <div class="doc-h3" style="color:var(--green);margin-top:0;">v2.1 — February 2026</div>
+      <p class="doc-p">Added <strong>Grok-3 and Grok-3-mini</strong> models with native X integration. Introduced <strong>Sentiment API endpoint</strong>. Improved routing engine accuracy for X-sourced queries. Fixed latency regression on Deep Research mode.</p>
+      <div class="doc-h3">v2.0 — December 2025</div>
+      <p class="doc-p">Major release: <strong>Deep Research mode</strong> launched with agentic multi-step planning. <strong>Lookout Agents API</strong> enters beta. Added <strong>DeepSeek R1 and V3</strong>. Streaming response support via SSE.</p>
+      <div class="doc-h3">v1.5 — September 2025</div>
+      <p class="doc-p">X / Twitter integration launched. Model routing engine v1 shipped. Added <code>time_range</code> parameter. Gemini 2.5 Flash and Pro added to model roster.</p>
+      <div class="doc-h3">v1.0 — March 2025</div>
+      <p class="doc-p">Beta launch. Market search, Reddit sentiment, and Claude + GPT-4o integration. Web interface only.</p>
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('guide-lookout',document.querySelector('[onclick*=guide-lookout]'))">
+          <span class="pnb-label">← Previous</span><span class="pnb-title">Setting Up Lookouts</span>
+        </a>
+        <a class="page-nav-btn next" onclick="showSection('faq',document.querySelector('[onclick*=faq]'))">
+          <span class="pnb-label">Next →</span><span class="pnb-title">FAQ</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── FAQ ── -->
+    <div id="sec-faq" class="doc-section fade-up" style="display:none">
+      <div class="doc-hero">
+        <div class="breadcrumb"><a href="#">Docs</a><span>/</span><span>FAQ</span></div>
+        <h1>Frequently Asked Questions</h1>
+        <p>Quick answers to common questions about LCX AI.</p>
+      </div>
+      <div class="doc-h3">Is LCX AI financial advice?</div>
+      <p class="doc-p">No. LCX AI is a research and information tool only. Nothing it produces constitutes financial, investment, or legal advice. All investment decisions are solely your responsibility.</p>
+      <div class="doc-h3">How fresh is the data?</div>
+      <p class="doc-p">Market prices are refreshed every 15 seconds. X posts have ~5 minute latency (sub-minute with Grok). Reddit is refreshed every 2 minutes.</p>
+      <div class="doc-h3">Which model should I use?</div>
+      <p class="doc-p">Use <code>model: "auto"</code> for most cases — the routing engine picks the best model. For X sentiment tasks, <code>grok-3</code> has native X access. For deep analysis, <code>claude-opus-4</code> or <code>gemini-2.5-pro</code> perform best.</p>
+      <div class="doc-h3">Is my data stored or used for training?</div>
+      <p class="doc-p">No. LCX AI does not log or store your queries for model training purposes. All data handling is governed by LCX's privacy policy, aligned with EU regulations.</p>
+      <div class="doc-h3">Can I use LCX AI for crypto research?</div>
+      <p class="doc-p">Yes. lcx ai covers crypto assets — prices, sentiment, community discussion, and macro trends — across BTC, ETH, and hundreds of altcoins.</p>
+      <div class="page-nav">
+        <a class="page-nav-btn" onclick="showSection('changelog',document.querySelector('[onclick*=changelog]'))">
+          <span class="pnb-label">← Previous</span><span class="pnb-title">Changelog</span>
+        </a>
+        <div></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <p>LCX AI by LCX AI Labs · <a href="#">LCX.com</a> · <a href="feature.html">Features</a> · <a href="about.html">About</a> · <a href="#">Privacy</a></p>
+  <p style="margin-top:4px">Not financial advice. LCX AI is a research tool only.</p>
+</footer>
+
+<script>
+function showSection(id, clickedLink) {
+  // Hide all sections
+  document.querySelectorAll('.doc-section').forEach(s => s.style.display = 'none');
+  // Show target
+  const sec = document.getElementById('sec-' + id);
+  if(sec){
+    sec.style.display = '';
+    setTimeout(() => sec.classList.add('in'), 30);
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  // Update sidebar active
+  document.querySelectorAll('.sb-link').forEach(l => l.classList.remove('active'));
+  if(clickedLink) clickedLink.classList.add('active');
+}
+
+function copyCode(btn) {
+  const pre = btn.closest('.code-block').querySelector('pre');
+  navigator.clipboard.writeText(pre.innerText).then(() => {
+    btn.textContent = 'Copied!';
+    btn.style.color = 'var(--green)';
+    setTimeout(() => { btn.textContent = 'Copy'; btn.style.color = ''; }, 2000);
+  });
+}
+
+// Init first section
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }});
+},{threshold:0.05});
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+document.getElementById('sec-intro').style.display = '';
+setTimeout(() => document.getElementById('sec-intro').classList.add('in'), 60);
+</script>
+</body>
+</html>

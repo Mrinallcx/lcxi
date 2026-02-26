@@ -1,0 +1,27 @@
+# LCX AI — Finance AI by LCX
+
+> LCX AI is an AI-powered financial research platform built by LCX AI Labs. It combines live market data, real-time X and Reddit sentiment, and frontier LLM reasoning into one focused research environment. Use lcx ai for instant, cited answers on markets, assets, sentiment, and earnings — not financial advice.
+
+## Key Information
+
+- [Home](https://lcxi.vercel.app/): Product overview and search demo
+- [Features](https://lcxi.vercel.app/feature.html): Search modes, capabilities, Lookout agents, pricing
+- [About](https://lcxi.vercel.app/about.html): Mission, team, roadmap, and LCX
+- [Documentation](https://lcxi.vercel.app/docs.html): API reference, quick start, guides, FAQ
+
+## What LCX AI Does
+
+- **Financial research**: Ask questions; get AI-synthesized answers from live market data, X, and Reddit
+- **Search modes**: Default, /market, /x, /reddit, /deep, /fact, /video
+- **Lookout agents**: Recurring research and email digests
+- **API**: REST API for query, sentiment, and Lookout endpoints
+
+## What LCX AI Does Not Do
+
+- LCX AI is a research and information tool only. It does not provide financial, investment, or legal advice. All investment decisions are the sole responsibility of the user.
+
+## Contact
+
+- **Product**: Finance AI by LCX (LCX AI)
+- **Company**: [LCX — Liberty Crypto Exchange](https://lcx.com) (EU-licensed, Vaduz)
+- **Labs**: LCX AI Labs
