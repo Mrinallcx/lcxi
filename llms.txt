@@ -4,10 +4,10 @@
 
 ## Key Information
 
-- [Home](https://lcxi.vercel.app/): Product overview and search demo
-- [Features](https://lcxi.vercel.app/feature.html): Search modes, capabilities, Lookout agents, pricing
-- [About](https://lcxi.vercel.app/about.html): Mission, team, roadmap, and LCX
-- [Documentation](https://lcxi.vercel.app/docs.html): API reference, quick start, guides, FAQ
+- [Home](https://www.lcxai.xyz/): Product overview and search demo
+- [Features](https://www.lcxai.xyz/feature.html): Search modes, capabilities, Lookout agents, pricing
+- [About](https://www.lcxai.xyz/about.html): Mission, team, roadmap, and LCX
+- [Documentation](https://www.lcxai.xyz/docs.html): API reference, quick start, guides, FAQ
 
 ## What LCX AI Does
 
