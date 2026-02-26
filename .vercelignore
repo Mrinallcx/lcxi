@@ -1,0 +1,3 @@
+# Optional: ignore local / IDE files if you add any later
+.DS_Store
+*.log

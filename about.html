@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Finance AI by LCX</title>
+<link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:           #ffffff;
+  --bg2:          #f8fafc;
+  --bg3:          #f1f5f9;
+  --bg4:          #e8eef6;
+  --border:       #e2e8f0;
+  --border2:      #cbd5e1;
+  --text:         #0f172a;
+  --text2:        #64748b;
+  --text3:        #94a3b8;
+  --blue:         #375ff6;
+  --blue-light:   #eef2ff;
+  --blue-mid:     #e0e7ff;
+  --blue-border:  #c7d2fe;
+  --blue-hover:   #2748e0;
+  --green:        #059669;
+  --green-light:  #ecfdf5;
+  --green-border: #a7f3d0;
+  --gold:         #b45309;
+  --gold-light:   #fffbeb;
+  --gold-border:  #fde68a;
+  --font: 'DM Sans', sans-serif;
+  --head: 'Space Grotesk', sans-serif;
+  --mono: 'Space Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ── HEADER (same as index) ── */
+header{
+  padding:24px 0 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo-area{display:flex;align-items:center;gap:10px;}
+.logo-mark{
+  width:36px;height:36px;
+  border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  overflow:hidden;
+}
+.logo-mark img{
+  width:100%;height:100%;
+  object-fit:contain;
+  display:block;
+}
+.logo-text{display:flex;flex-direction:column;line-height:1.15;}
+.logo-text .name{font-size:15px;font-weight:700;color:var(--text);}
+.logo-text .by{font-size:11px;font-weight:600;color:var(--blue);letter-spacing:0.5px;}
+header nav a{
+  font-size:14px;font-weight:600;
+  color:var(--text2);text-decoration:none;
+  margin-left:20px;transition:color .15s;
+}
+header nav a:hover{color:var(--blue);}
+header nav a.active{color:var(--text);}
+header nav .nav-cta{
+  background:var(--blue);
+  color:#fff!important;
+  padding:8px 18px;
+  border-radius:8px;
+}
+header nav .nav-cta:hover{background:var(--blue-hover)!important;}
+
+/* ── WRAP ── */
+.wrap{max-width:860px;margin:0 auto;padding:0 32px;}
+.wrap-sm{max-width:640px;margin:0 auto;padding:0 32px;}
+
+/* ── HERO ── */
+.hero{
+  padding:56px 32px 72px;
+  max-width:860px;margin:0 auto;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--text3);margin-bottom:22px;
+}
+.live-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--green);
+  animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.hero h1{
+  font-family:var(--head);
+  font-size:clamp(34px,5vw,54px);
+  font-weight:700;line-height:1.1;letter-spacing:-1.5px;
+  color:var(--text);margin-bottom:20px;
+  max-width:640px;
+}
+.hero h1 em{font-style:normal;color:var(--blue);}
+.hero-lead{
+  font-size:18px;line-height:1.75;color:var(--text2);
+  max-width:560px;margin-bottom:0;
+}
+
+/* ── SECTION ── */
+.section{padding:68px 0;border-top:1px solid var(--border);}
+.section-tag{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:2px;color:var(--text3);
+  margin-bottom:10px;
+}
+.section h2{
+  font-family:var(--head);font-size:clamp(22px,3vw,30px);
+  font-weight:700;letter-spacing:-0.6px;color:var(--text);
+  margin-bottom:8px;line-height:1.2;
+}
+.section-desc{
+  font-size:15px;color:var(--text2);line-height:1.75;
+  max-width:500px;margin-bottom:36px;
+}
+
+/* ── MISSION SPLIT ── */
+.mission-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;
+}
+@media(max-width:620px){.mission-grid{grid-template-columns:1fr;gap:32px;}}
+.mission-text p{
+  font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:16px;
+}
+.mission-text p:last-child{margin-bottom:0;}
+.mission-text strong{color:var(--text);font-weight:600;}
+
+.mission-values{display:flex;flex-direction:column;gap:12px;}
+.value-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:12px;padding:18px 18px 16px;
+  transition:border-color .15s,box-shadow .15s;
+}
+.value-card:hover{border-color:var(--border2);box-shadow:0 4px 16px rgba(15,23,42,.05);}
+.vc-top{display:flex;align-items:center;gap:10px;margin-bottom:5px;}
+.vc-icon{
+  width:30px;height:30px;border-radius:8px;
+  background:var(--blue-light);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;
+}
+.vc-title{font-family:var(--head);font-size:14px;font-weight:700;color:var(--text);}
+.vc-desc{font-size:13px;color:var(--text2);line-height:1.6;padding-left:40px;}
+
+/* ── STATS ROW ── */
+.stats-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+}
+@media(max-width:620px){.stats-row{grid-template-columns:repeat(2,1fr);}}
+.stat-box{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:14px;padding:24px 20px;
+  text-align:center;
+}
+.stat-box .num{
+  font-family:var(--head);font-size:36px;font-weight:700;
+  color:var(--blue);letter-spacing:-1.5px;
+  display:block;margin-bottom:4px;
+}
+.stat-box .lbl{font-size:13px;color:var(--text2);line-height:1.4;}
+
+/* ── TIMELINE ── */
+.timeline{position:relative;padding-left:28px;}
+.timeline::before{
+  content:'';
+  position:absolute;left:7px;top:6px;bottom:6px;
+  width:1.5px;background:var(--border2);
+}
+.tl-item{position:relative;margin-bottom:36px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{
+  position:absolute;left:-28px;top:4px;
+  width:16px;height:16px;border-radius:50%;
+  background:var(--blue-light);border:2px solid var(--blue);
+  display:flex;align-items:center;justify-content:center;
+}
+.tl-dot.done{background:var(--blue);}
+.tl-dot.done::after{content:'';width:5px;height:5px;border-radius:50%;background:#fff;}
+.tl-year{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--text3);margin-bottom:4px;
+}
+.tl-title{font-family:var(--head);font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.tl-desc{font-size:13px;color:var(--text2);line-height:1.6;}
+.tl-badge{
+  display:inline-block;
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  text-transform:uppercase;letter-spacing:1px;
+  padding:2px 7px;border-radius:4px;margin-top:5px;
+}
+.tl-badge.live{background:var(--green-light);color:var(--green);border:1px solid var(--green-border);}
+.tl-badge.soon{background:var(--gold-light);color:var(--gold);border:1px solid var(--gold-border);}
+.tl-badge.future{background:var(--bg3);color:var(--text3);border:1px solid var(--border2);}
+
+/* ── TEAM ── */
+.team-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+}
+@media(max-width:620px){.team-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:400px){.team-grid{grid-template-columns:1fr;}}
+.team-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:14px;padding:22px 18px;
+  transition:border-color .15s,box-shadow .15s;
+}
+.team-card:hover{border-color:var(--border2);box-shadow:0 4px 16px rgba(15,23,42,.05);}
+.tc-avatar{
+  width:44px;height:44px;border-radius:12px;
+  background:var(--blue-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--head);font-size:16px;font-weight:700;
+  color:var(--blue);margin-bottom:12px;
+}
+.tc-name{font-family:var(--head);font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.tc-role{font-size:12px;color:var(--text3);margin-bottom:8px;}
+.tc-tag{
+  display:inline-block;
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  text-transform:uppercase;letter-spacing:1px;
+  padding:2px 7px;border-radius:4px;
+  background:var(--blue-light);color:var(--blue);border:1px solid var(--blue-border);
+}
+
+/* ── LCX BLOCK ── */
+.lcx-block{
+  background:var(--blue-light);border:1px solid var(--blue-border);
+  border-radius:20px;padding:48px 40px;
+  display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start;
+}
+@media(max-width:580px){.lcx-block{grid-template-columns:1fr;padding:32px 24px;}}
+.lcx-mark{
+  width:60px;height:60px;border-radius:14px;
+  background:var(--blue);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:15px;font-weight:700;
+  color:#fff;letter-spacing:-0.5px;flex-shrink:0;
+}
+.lcx-body h3{
+  font-family:var(--head);font-size:22px;font-weight:700;
+  color:var(--text);margin-bottom:10px;letter-spacing:-0.5px;
+}
+.lcx-body p{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:14px;}
+.lcx-body p:last-of-type{margin-bottom:18px;}
+.lcx-links{display:flex;gap:10px;flex-wrap:wrap;}
+.lcx-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:600;color:var(--blue);
+  text-decoration:none;
+  padding:8px 16px;border-radius:8px;
+  border:1px solid var(--blue-border);
+  background:rgba(255,255,255,0.6);
+  transition:background .15s,border-color .15s;
+}
+.lcx-link:hover{background:#fff;border-color:var(--blue);}
+
+/* ── TRUST PILLARS ── */
+.pillars-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+}
+@media(max-width:580px){.pillars-grid{grid-template-columns:1fr;}}
+.pillar-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:14px;padding:26px 20px;
+  position:relative;overflow:hidden;
+  transition:border-color .15s,box-shadow .15s;
+}
+.pillar-card:hover{border-color:var(--border2);box-shadow:0 4px 16px rgba(15,23,42,.05);}
+.pillar-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  border-radius:14px 14px 0 0;
+}
+.pillar-card.p1::before{background:linear-gradient(90deg,var(--blue),#60a5fa);}
+.pillar-card.p2::before{background:linear-gradient(90deg,var(--green),#34d399);}
+.pillar-card.p3::before{background:linear-gradient(90deg,var(--gold),#f59e0b);}
+.pillar-icon{font-size:26px;margin-bottom:12px;display:block;}
+.pillar-card h4{font-family:var(--head);font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.pillar-card p{font-size:13px;color:var(--text2);line-height:1.65;}
+
+/* ── CTA ── */
+.cta-block{
+  margin:68px 0;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:20px;padding:52px 40px;
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta-block::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),#60a5fa);
+  border-radius:20px 20px 0 0;
+}
+.cta-block h2{
+  font-family:var(--head);font-size:28px;font-weight:700;
+  color:var(--text);letter-spacing:-0.6px;margin-bottom:10px;
+}
+.cta-block p{font-size:15px;color:var(--text2);margin-bottom:26px;}
+.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.cta-btn-p{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--blue);color:#fff;
+  padding:12px 28px;border-radius:10px;
+  font-size:14px;font-weight:700;text-decoration:none;
+  transition:background .15s;
+}
+.cta-btn-p:hover{background:var(--blue-hover);}
+.cta-btn-s{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--bg);color:var(--text);
+  padding:12px 28px;border-radius:10px;
+  border:1px solid var(--border2);
+  font-size:14px;font-weight:700;text-decoration:none;
+  transition:background .15s;
+}
+.cta-btn-s:hover{background:var(--bg3);}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:24px 32px;
+  text-align:center;
+  font-size:12px;color:var(--text3);line-height:2;
+}
+footer a{color:var(--text2);text-decoration:none;}
+footer a:hover{color:var(--blue);}
+
+/* ── ANIMATIONS ── */
+.fade-up{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease;}
+.fade-up.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER (same as index) -->
+  <header>
+    <a href="index.html" class="logo-area" style="text-decoration:none;color:inherit;">
+      <div class="logo-mark"><img src="favicon/favicon.svg" alt="Finance AI"></div>
+      <div class="logo-text">
+        <span class="name">Finance AI</span>
+        <span class="by">by LCX</span>
+      </div>
+    </a>
+    <nav>
+      <a href="feature.html">Features</a>
+      <a href="#">Docs</a>
+      <a href="about.html" class="active">About</a>
+      <a href="#" class="nav-cta">Try Free →</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero fade-up">
+  <div class="hero-eyebrow"><span class="live-dot"></span> Our story</div>
+  <h1>Built for the investor<br>who <em>moves fast</em></h1>
+  <p class="hero-lead">Finance AI started with a simple frustration — getting a clear picture of market sentiment meant juggling a dozen tabs, two apps, and a Twitter feed. We decided to fix that.</p>
+</div>
+
+  <!-- MISSION -->
+  <section class="section fade-up">
+    <div class="section-tag">Mission</div>
+    <h2>Why Finance AI exists</h2>
+    <div class="mission-grid">
+      <div class="mission-text">
+        <p>Markets move on information. But <strong>the best signals are scattered</strong> — buried in Reddit threads, quoted in X posts, buried under earnings releases nobody has time to read in full.</p>
+        <p>Finance AI's mission is to <strong>collapse the distance between signal and decision</strong>. We combine live market data with real-time social intelligence and frontier AI reasoning — so you spend less time searching and more time thinking.</p>
+        <p>We're not building another financial data terminal. We're building the <strong>research co-pilot</strong> for the modern investor: fast, transparent, and grounded in real sources.</p>
+      </div>
+      <div class="mission-values">
+        <div class="value-card">
+          <div class="vc-top"><div class="vc-icon">⚡</div><div class="vc-title">Speed over noise</div></div>
+          <div class="vc-desc">Every design decision optimises for time-to-insight. If it slows you down, we cut it.</div>
+        </div>
+        <div class="value-card">
+          <div class="vc-top"><div class="vc-icon">🔗</div><div class="vc-title">Transparency first</div></div>
+          <div class="vc-desc">Every claim cites its source. We don't hide the reasoning — we surface it.</div>
+        </div>
+        <div class="value-card">
+          <div class="vc-top"><div class="vc-icon">🎯</div><div class="vc-title">Finance, only</div></div>
+          <div class="vc-desc">We refuse to be a general chatbot. Narrow focus means deeper quality.</div>
+        </div>
+        <div class="value-card">
+          <div class="vc-top"><div class="vc-icon">🔒</div><div class="vc-title">Compliance built in</div></div>
+          <div class="vc-desc">Backed by LCX's regulated infrastructure. Privacy and trust are not afterthoughts.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section fade-up">
+    <div class="section-tag">By the numbers</div>
+    <h2>Finance AI in numbers</h2>
+    <p class="section-desc">Since launching in beta, Finance AI has helped thousands of investors cut through market noise and find the signal that matters.</p>
+    <div class="stats-row">
+      <div class="stat-box">
+        <span class="num">6</span>
+        <span class="lbl">Frontier LLMs<br>integrated</span>
+      </div>
+      <div class="stat-box">
+        <span class="num">3</span>
+        <span class="lbl">Live data sources<br>scanned per query</span>
+      </div>
+      <div class="stat-box">
+        <span class="num">2.4s</span>
+        <span class="lbl">Average response<br>time</span>
+      </div>
+      <div class="stat-box">
+        <span class="num">EU</span>
+        <span class="lbl">Regulated &amp;<br>compliant infrastructure</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="section fade-up">
+    <div class="section-tag">Roadmap</div>
+    <h2>Where we're headed</h2>
+    <p class="section-desc">Finance AI is in active development. Here's what we've shipped and what's coming next.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot done"></div>
+        <div class="tl-year">Q1 2025 — Shipped</div>
+        <div class="tl-title">Beta Launch</div>
+        <div class="tl-desc">Finance AI goes live with market data search, Reddit sentiment, and Claude + GPT-4o integration.</div>
+        <span class="tl-badge live">Live</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot done"></div>
+        <div class="tl-year">Q2 2025 — Shipped</div>
+        <div class="tl-title">X / Twitter Integration & Multi-Model Routing</div>
+        <div class="tl-desc">Real-time X scanning added. Intelligent model routing launches — queries are automatically dispatched to the best-fit LLM.</div>
+        <span class="tl-badge live">Live</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot done"></div>
+        <div class="tl-year">Q3 2025 — Shipped</div>
+        <div class="tl-title">Deep Research Mode & Lookout Agents</div>
+        <div class="tl-desc">Agentic multi-step research launches. Lookout agents go live — users can monitor any topic on a schedule.</div>
+        <span class="tl-badge live">Live</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">Q4 2025 — In Progress</div>
+        <div class="tl-title">SEC Filings & Earnings Transcripts</div>
+        <div class="tl-desc">Direct search across SEC EDGAR filings, 10-Ks, 10-Qs, and official earnings call transcripts.</div>
+        <span class="tl-badge soon">Coming Soon</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">Q1 2026 — Planned</div>
+        <div class="tl-title">Portfolio Intelligence & Custom Watchlists</div>
+        <div class="tl-desc">Connect your portfolio for personalised research, AI-generated risk summaries, and proactive alerts on your holdings.</div>
+        <span class="tl-badge future">Planned</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2026 — Vision</div>
+        <div class="tl-title">Finance AI API & Institutional Tier</div>
+        <div class="tl-desc">Public API for embedding Finance AI research into third-party tools, trading terminals, and institutional workflows.</div>
+        <span class="tl-badge future">Planned</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section fade-up">
+    <div class="section-tag">Team</div>
+    <h2>Built by LCX AI Labs</h2>
+    <p class="section-desc">Finance AI is developed by the AI research arm of LCX — a team of engineers, researchers, and finance practitioners focused on making AI useful for real investment workflows.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="tc-avatar">AR</div>
+        <div class="tc-name">Arun Rao</div>
+        <div class="tc-role">Head of AI Research</div>
+        <span class="tc-tag">AI · LLMs</span>
+      </div>
+      <div class="team-card">
+        <div class="tc-avatar">SK</div>
+        <div class="tc-name">Sara Klein</div>
+        <div class="tc-role">Lead Engineer</div>
+        <span class="tc-tag">Infra · APIs</span>
+      </div>
+      <div class="team-card">
+        <div class="tc-avatar">MV</div>
+        <div class="tc-name">Marco Volpe</div>
+        <div class="tc-role">Product Design</div>
+        <span class="tc-tag">UX · Design</span>
+      </div>
+      <div class="team-card">
+        <div class="tc-avatar">PJ</div>
+        <div class="tc-name">Priya Jain</div>
+        <div class="tc-role">Finance & Data</div>
+        <span class="tc-tag">Markets · Data</span>
+      </div>
+      <div class="team-card">
+        <div class="tc-avatar">TM</div>
+        <div class="tc-name">Thomas Müller</div>
+        <div class="tc-role">Compliance & Trust</div>
+        <span class="tc-tag">Reg · Legal</span>
+      </div>
+      <div class="team-card" style="background:var(--blue-light);border-color:var(--blue-border);">
+        <div class="tc-avatar" style="background:var(--blue-mid);">+</div>
+        <div class="tc-name" style="color:var(--blue);">We're hiring</div>
+        <div class="tc-role">Join LCX AI Labs</div>
+        <span class="tc-tag">Open roles →</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST PILLARS -->
+  <section class="section fade-up">
+    <div class="section-tag">Trust & Compliance</div>
+    <h2>Why you can trust Finance AI</h2>
+    <p class="section-desc">Trust is the foundation of any financial tool. Finance AI inherits LCX's commitment to regulation, transparency, and user protection.</p>
+    <div class="pillars-grid">
+      <div class="pillar-card p1">
+        <span class="pillar-icon">🏛️</span>
+        <h4>EU-Regulated Foundation</h4>
+        <p>Built on LCX's infrastructure — an EU-licensed, MiCA-compliant exchange. Regulatory rigour is embedded from day one, not bolted on.</p>
+      </div>
+      <div class="pillar-card p2">
+        <span class="pillar-icon">🚫</span>
+        <h4>No Ads, Ever</h4>
+        <p>Finance AI is ad-free by design. We are not paid to surface certain assets, funds, or recommendations. Your research is yours alone.</p>
+      </div>
+      <div class="pillar-card p3">
+        <span class="pillar-icon">📋</span>
+        <h4>Research Tool Disclaimer</h4>
+        <p>Finance AI is a research and information tool. Nothing on this platform constitutes financial advice. All investment decisions remain yours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LCX BLOCK -->
+  <section class="section fade-up" style="border-top:1px solid var(--border);padding-top:68px;padding-bottom:0;">
+    <div class="lcx-block">
+      <div class="lcx-mark">LCX</div>
+      <div class="lcx-body">
+        <h3>About LCX — Liberty Crypto Exchange</h3>
+        <p>LCX (Liberty Crypto Exchange) is a regulated digital asset exchange headquartered in Vaduz, Liechtenstein. Licensed under the EU's financial markets framework, LCX serves thousands of users across Europe and globally — offering compliant crypto trading, token services, and blockchain infrastructure.</p>
+        <p>Finance AI is developed by LCX AI Labs, LCX's dedicated research and product division focused on applying frontier AI to financial workflows. By building on LCX's regulated infrastructure, Finance AI benefits from institutional-grade security, compliance, and trust — while remaining fast and accessible for everyday investors.</p>
+        <div class="lcx-links">
+          <a href="#" class="lcx-link">↗ Visit LCX.com</a>
+          <a href="#" class="lcx-link">↗ LCX AI Labs</a>
+          <a href="#" class="lcx-link">↗ Compliance &amp; Licensing</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-block fade-up">
+    <h2>Start researching with Finance AI</h2>
+    <p>Free to try. No account needed. Finance-grade AI in seconds.</p>
+    <div class="cta-btns">
+      <a href="#" class="cta-btn-p">Try Finance AI Free →</a>
+      <a href="#" class="cta-btn-s">Read the docs</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Finance AI by LCX AI Labs · <a href="#">LCX.com</a> · <a href="feature.html">Features</a> · <a href="#">Docs</a> · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+  <p style="margin-top:4px">Not financial advice. Finance AI is a research tool only.</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e,i) => {
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('in'), i*80);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.07,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance AI by LCX — AI-Powered Financial Research</title>
+<link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+<meta name="description" content="Finance AI by LCX delivers instant financial intelligence. Analyze markets, search X and Reddit for sentiment, and get AI-powered insights — at the speed of thought.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #375ff6;
+  --blue-light: #EEF2FF;
+  --blue-mid: #E0E7FF;
+  --blue-border: #C7D2FE;
+  --blue-hover: #2748e0;
+  --dark: #0F172A;
+  --gray-900: #1E293B;
+  --gray-700: #475569;
+  --gray-500: #64748B;
+  --gray-400: #94A3B8;
+  --gray-300: #CBD5E1;
+  --gray-200: #E2E8F0;
+  --gray-100: #F1F5F9;
+  --gray-50: #F8FAFC;
+  --white: #FFFFFF;
+  --green: #059669;
+  --green-light: #ECFDF5;
+  --font: 'DM Sans', -apple-system, sans-serif;
+  --mono: 'Space Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  background: var(--white);
+  color: var(--dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(55,95,246,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(55,95,246,0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+/* ── HEADER ── */
+header {
+  padding: 24px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-area { display: flex; align-items: center; gap: 10px; }
+
+.logo-mark {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.logo-mark img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-text .name { font-size: 15px; font-weight: 700; color: var(--dark); }
+.logo-text .by { font-size: 11px; font-weight: 600; color: var(--blue); letter-spacing: 0.5px; }
+
+header nav a {
+  font-size: 14px; font-weight: 600;
+  color: var(--gray-500); text-decoration: none;
+  margin-left: 20px; transition: color 0.15s;
+}
+header nav a:hover { color: var(--blue); }
+header nav .nav-cta {
+  background: var(--blue);
+  color: var(--white) !important;
+  padding: 8px 18px;
+  border-radius: 8px;
+}
+header nav .nav-cta:hover { background: var(--blue-hover) !important; }
+
+/* ── HERO ── */
+.hero { padding: 56px 0 0; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--blue-light);
+  border: 1px solid var(--blue-border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px; font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 24px;
+}
+
+.live-dot {
+  width: 7px; height: 7px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100%{opacity:1;transform:scale(1);}
+  50%{opacity:.5;transform:scale(.85);}
+}
+
+.hero h1 {
+  font-size: clamp(30px, 5.5vw, 46px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.8px;
+  color: var(--dark);
+  margin-bottom: 20px;
+}
+.hero h1 span { color: var(--blue); }
+
+.hero .sub {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--gray-500);
+  max-width: 580px;
+  margin-bottom: 36px;
+}
+
+/* ── SEARCH DEMO ── */
+.search-demo {
+  background: var(--gray-50);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 16px;
+  padding: 20px 20px 16px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.search-demo::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), #60a5fa);
+  border-radius: 16px 16px 0 0;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+}
+.search-bar .search-icon { font-size: 16px; flex-shrink: 0; }
+.search-bar .search-text {
+  font-size: 15px; color: var(--gray-700); flex: 1;
+  font-family: var(--font); font-weight: 500;
+}
+.search-bar .search-btn {
+  background: var(--blue);
+  color: var(--white);
+  border: none;
+  padding: 7px 16px;
+  border-radius: 7px;
+  font-size: 13px; font-weight: 700;
+  cursor: default;
+  font-family: var(--font);
+  flex-shrink: 0;
+}
+
+.source-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px; font-weight: 700;
+  border: 1px solid;
+}
+.pill-finance { background: var(--green-light); border-color: #A7F3D0; color: var(--green); }
+.pill-x { background: #000; border-color: #000; color: #fff; }
+.pill-reddit { background: #FF4500; border-color: #FF4500; color: #fff; }
+.pill-inactive { background: var(--gray-100); border-color: var(--gray-200); color: var(--gray-400); }
+
+.search-label {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px;
+  color: var(--gray-400); margin-bottom: 8px;
+}
+
+/* ── HERO CTAS ── */
+.hero-ctas {
+  display: flex; gap: 12px;
+  margin-bottom: 56px; flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--blue); color: var(--white);
+  font-size: 15px; font-weight: 700;
+  padding: 13px 28px; border-radius: 10px;
+  text-decoration: none; transition: all 0.15s;
+}
+.btn-primary:hover { background: var(--blue-hover); transform: translateY(-1px); }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--white); color: var(--dark);
+  font-size: 15px; font-weight: 700;
+  padding: 13px 28px; border-radius: 10px;
+  text-decoration: none;
+  border: 1.5px solid var(--gray-200); transition: all 0.15s;
+}
+.btn-secondary:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
+
+/* ── TRUST BAR ── */
+.trust-bar {
+  display: flex; align-items: center; gap: 24px;
+  padding: 18px 0;
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 13px; font-weight: 600; color: var(--gray-500);
+}
+.trust-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+/* ── SECTION ── */
+.section { padding: 52px 0; border-top: 1px solid var(--gray-200); }
+.section-label {
+  font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.2px;
+  color: var(--blue); margin-bottom: 8px;
+}
+.section h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 8px; }
+.section .section-sub {
+  font-size: 16px; color: var(--gray-500);
+  margin-bottom: 32px; line-height: 1.6; max-width: 540px;
+}
+
+/* ── SOURCE CARDS ── */
+.source-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px; margin-bottom: 20px;
+}
+@media (max-width: 580px) { .source-grid { grid-template-columns: 1fr; } }
+
+.source-card {
+  border-radius: 14px; padding: 26px 20px;
+  border: 1px solid; position: relative; overflow: hidden;
+}
+.source-card-finance { background: var(--green-light); border-color: #A7F3D0; }
+.source-card-x { background: #F9F9F9; border-color: #E0E0E0; }
+.source-card-reddit { background: #FFF4F0; border-color: #FFCAB0; }
+
+.sc-icon { font-size: 28px; margin-bottom: 12px; }
+.sc-name { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 5px; }
+.sc-desc { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
+.sc-tag {
+  position: absolute; top: 14px; right: 14px;
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.8px;
+  padding: 3px 8px; border-radius: 4px;
+}
+.tag-live { background: var(--green-light); color: var(--green); border: 1px solid #A7F3D0; }
+.tag-live-x { background: #000; color: #fff; }
+.tag-live-reddit { background: #FF4500; color: #fff; }
+
+/* ── QUERY CARDS ── */
+.query-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+}
+@media (max-width: 520px) { .query-grid { grid-template-columns: 1fr; } }
+
+.query-card {
+  background: var(--gray-50); border: 1px solid var(--gray-200);
+  border-radius: 12px; padding: 18px 18px 14px;
+  cursor: default; transition: border-color 0.15s, box-shadow 0.15s;
+}
+.query-card:hover {
+  border-color: var(--blue-border);
+  box-shadow: 0 4px 16px rgba(55,95,246,0.07);
+}
+.qc-category {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px;
+  color: var(--gray-400); margin-bottom: 6px;
+}
+.qc-query {
+  font-size: 14px; font-weight: 600; color: var(--dark);
+  line-height: 1.4; margin-bottom: 10px;
+}
+.qc-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.qc-tag {
+  font-size: 11px; font-weight: 700;
+  padding: 2px 8px; border-radius: 4px;
+  background: var(--blue-light); color: var(--blue);
+}
+.qc-tag-x { background: #f0f0f0; color: #333; }
+.qc-tag-reddit { background: #FFF4F0; color: #FF4500; }
+.qc-tag-market { background: var(--green-light); color: var(--green); }
+
+/* ── STEPS ── */
+.steps-list { max-width: 520px; }
+.step-item {
+  display: flex; gap: 16px;
+  margin-bottom: 28px; position: relative;
+}
+.step-item:last-child { margin-bottom: 0; }
+.step-num {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--blue); color: var(--white);
+  font-family: var(--mono); font-size: 14px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.step-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 16px; top: 38px;
+  width: 2px; height: calc(100% - 14px);
+  background: var(--blue-border);
+}
+.step-item h4 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+.step-item p { font-size: 14px; color: var(--gray-500); line-height: 1.55; }
+
+/* ── FEATURES GRID ── */
+.features-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+}
+@media (max-width: 580px) { .features-grid { grid-template-columns: 1fr; } }
+
+.feature-box {
+  background: var(--gray-50); border: 1px solid var(--gray-200);
+  border-radius: 12px; padding: 24px 18px;
+}
+.fb-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: var(--blue-light);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 12px;
+}
+.feature-box h4 { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+.feature-box p { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
+
+/* ── LCX TRUST BLOCK ── */
+.lcx-section {
+  padding: 36px 32px;
+  background: var(--blue-light);
+  border: 1px solid var(--blue-border);
+  border-radius: 16px;
+  display: flex; gap: 24px; align-items: flex-start;
+  margin-bottom: 52px;
+}
+@media (max-width: 520px) { .lcx-section { flex-direction: column; } }
+
+.lcx-icon {
+  width: 52px; height: 52px;
+  background: var(--blue); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 14px; font-weight: 700;
+  color: var(--white); flex-shrink: 0;
+}
+.lcx-body h3 { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+.lcx-body p { font-size: 14px; color: var(--gray-700); line-height: 1.6; }
+.lcx-body a { color: var(--blue); text-decoration: none; font-weight: 600; }
+.lcx-body a:hover { text-decoration: underline; }
+
+/* ── BOTTOM CTA ── */
+.bottom-cta {
+  padding: 56px 0; border-top: 1px solid var(--gray-200); text-align: center;
+}
+.bottom-cta h2 { font-size: 30px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 10px; }
+.bottom-cta p { font-size: 16px; color: var(--gray-500); margin-bottom: 28px; line-height: 1.6; }
+.bottom-cta .btn-primary { font-size: 16px; padding: 14px 36px; }
+.bottom-cta .sub-links { margin-top: 18px; font-size: 13px; color: var(--gray-400); }
+.bottom-cta .sub-links a {
+  color: var(--blue); text-decoration: none; font-weight: 600; margin: 0 8px;
+}
+
+/* ── FOOTER ── */
+footer { text-align: center; padding: 32px 0; border-top: 1px solid var(--gray-200); }
+footer p { font-size: 13px; color: var(--gray-400); line-height: 1.9; }
+footer a { color: var(--blue); text-decoration: none; }
+
+/* ── ANIMATIONS ── */
+.fade-in { opacity: 0; transform: translateY(14px); }
+.fade-in.visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s ease; }
+header, .hero { opacity: 1 !important; transform: none !important; animation: fadeUp 0.5s ease forwards; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-area">
+      <div class="logo-mark"><img src="favicon/favicon.svg" alt="Finance AI"></div>
+      <div class="logo-text">
+        <span class="name">Finance AI</span>
+        <span class="by">by LCX</span>
+      </div>
+    </div>
+    <nav>
+      <a href="feature.html">Features</a>
+      <a href="#">Docs</a>
+      <a href="about.html">About</a>
+      <a href="#" class="nav-cta">Try Free →</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="live-dot"></span>
+      Now live — AI-powered financial research
+    </div>
+
+    <h1>Financial research<br>at the <span>speed of thought</span></h1>
+
+    <p class="sub">
+      Ask any finance question. Get instant AI-synthesized answers from live market data, X sentiment, and Reddit community discussions — all in one place.
+    </p>
+
+    <!-- SEARCH DEMO -->
+    <div class="search-demo">
+      <div class="search-label">Try asking Finance AI</div>
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <span class="search-text">What is Reddit saying about $NVDA earnings this week?</span>
+        <button class="search-btn">Ask AI →</button>
+      </div>
+      <div class="search-label">Sources searched</div>
+      <div class="source-pills">
+        <span class="pill pill-finance">📈 Market Data</span>
+        <span class="pill pill-x">𝕏 X / Twitter</span>
+        <span class="pill pill-reddit">🔴 Reddit</span>
+        <span class="pill pill-inactive">🗞️ News (soon)</span>
+        <span class="pill pill-inactive">📄 Filings (soon)</span>
+      </div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="#" class="btn-primary">Start Researching Free →</a>
+      <a href="#" class="btn-secondary">See how it works</a>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar fade-in">
+    <div class="trust-item"><span class="trust-dot"></span> No signup required</div>
+    <div class="trust-item"><span class="trust-dot"></span> Real-time X &amp; Reddit data</div>
+    <div class="trust-item"><span class="trust-dot"></span> Finance-only AI model</div>
+    <div class="trust-item"><span class="trust-dot"></span> Built by LCX</div>
+  </div>
+
+  <!-- DATA SOURCES -->
+  <section class="section fade-in">
+    <div class="section-label">Data Sources</div>
+    <h2>Where Finance AI looks for answers</h2>
+    <p class="section-sub">Finance AI combines structured market data with real-time social sentiment to give you a full picture — not just prices, but what people are actually saying.</p>
+
+    <div class="source-grid">
+      <div class="source-card source-card-finance">
+        <span class="sc-tag tag-live">● Live</span>
+        <div class="sc-icon">📈</div>
+        <div class="sc-name">Market & Finance</div>
+        <div class="sc-desc">Stock prices, crypto, indices, earnings data, and macroeconomic indicators — sourced and synthesized in real time.</div>
+      </div>
+      <div class="source-card source-card-x">
+        <span class="sc-tag tag-live-x">𝕏 Live</span>
+        <div class="sc-icon">𝕏</div>
+        <div class="sc-name">X (Twitter)</div>
+        <div class="sc-desc">Analyst takes, breaking market news, and investor sentiment — Finance AI scans X so you don't have to scroll endlessly.</div>
+      </div>
+      <div class="source-card source-card-reddit">
+        <span class="sc-tag tag-live-reddit">● Live</span>
+        <div class="sc-icon">🔴</div>
+        <div class="sc-name">Reddit</div>
+        <div class="sc-desc">WallStreetBets, CryptoCurrency, investing — community discussion signals often move markets before mainstream news.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE QUERIES -->
+  <section class="section fade-in">
+    <div class="section-label">What you can ask</div>
+    <h2>Finance questions, answered instantly</h2>
+    <p class="section-sub">Finance AI is purpose-built for financial research — not a general chatbot. Every answer is grounded in live financial data and social signals.</p>
+
+    <div class="query-grid">
+      <div class="query-card">
+        <div class="qc-category">Sentiment Analysis</div>
+        <div class="qc-query">"What is X saying about Bitcoin's next move right now?"</div>
+        <div class="qc-tags">
+          <span class="qc-tag qc-tag-x">𝕏 X</span>
+          <span class="qc-tag qc-tag-market">Market</span>
+        </div>
+      </div>
+      <div class="query-card">
+        <div class="qc-category">Community Pulse</div>
+        <div class="qc-query">"What stocks is r/WallStreetBets bullish on this week?"</div>
+        <div class="qc-tags">
+          <span class="qc-tag qc-tag-reddit">Reddit</span>
+        </div>
+      </div>
+      <div class="query-card">
+        <div class="qc-category">Market Research</div>
+        <div class="qc-query">"Compare analyst sentiment on $AAPL vs $MSFT earnings."</div>
+        <div class="qc-tags">
+          <span class="qc-tag qc-tag-x">𝕏 X</span>
+          <span class="qc-tag qc-tag-market">Market</span>
+        </div>
+      </div>
+      <div class="query-card">
+        <div class="qc-category">Crypto Signals</div>
+        <div class="qc-query">"Is Reddit bullish or bearish on Ethereum this month?"</div>
+        <div class="qc-tags">
+          <span class="qc-tag qc-tag-reddit">Reddit</span>
+          <span class="qc-tag qc-tag-market">Market</span>
+        </div>
+      </div>
+      <div class="query-card">
+        <div class="qc-category">Risk Monitoring</div>
+        <div class="qc-query">"Any unusual chatter about $TSLA on X in the last 24hrs?"</div>
+        <div class="qc-tags">
+          <span class="qc-tag qc-tag-x">𝕏 X</span>
+        </div>
+      </div>
+      <div class="query-card">
+        <div class="qc-category">Macro Research</div>
+        <div class="qc-query">"What's the general sentiment on interest rates across Reddit?"</div>
+        <div class="qc-tags">
+          <span class="qc-tag qc-tag-reddit">Reddit</span>
+          <span class="qc-tag qc-tag-market">Market</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section fade-in">
+    <div class="section-label">How it works</div>
+    <h2>Research in three steps</h2>
+    <p class="section-sub">No dashboards to configure. No data to import. Just ask a question and get a synthesized answer backed by live sources.</p>
+
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Type your finance question</h4>
+          <p>Ask anything — a stock, a crypto asset, a macroeconomic topic, or a sentiment check on X or Reddit. No special syntax needed.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div>
+          <h4>Finance AI searches live sources</h4>
+          <p>Our AI scans market data, X, and Reddit simultaneously — pulling the most relevant signals from the last minutes, hours, or days.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div>
+          <h4>Get a synthesized, sourced answer</h4>
+          <p>Receive a clear, concise answer with source attribution — so you can see where every insight came from and dig deeper if needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES GRID -->
+  <section class="section fade-in">
+    <div class="section-label">Capabilities</div>
+    <h2>Built exclusively for finance</h2>
+    <p class="section-sub">Finance AI is not a general-purpose assistant. Every model decision, data source, and interface is optimized for financial research.</p>
+
+    <div class="features-grid">
+      <div class="feature-box">
+        <div class="fb-icon">⚡</div>
+        <h4>Real-Time Data</h4>
+        <p>Answers grounded in live market data and social signals — not outdated training data.</p>
+      </div>
+      <div class="feature-box">
+        <div class="fb-icon">🎯</div>
+        <h4>Finance-Only Focus</h4>
+        <p>No off-topic answers. Every response is scoped to financial topics, markets, and assets.</p>
+      </div>
+      <div class="feature-box">
+        <div class="fb-icon">📊</div>
+        <h4>Sentiment Analysis</h4>
+        <p>Gauge bullish/bearish sentiment on X and Reddit with AI that understands financial language.</p>
+      </div>
+      <div class="feature-box">
+        <div class="fb-icon">🔗</div>
+        <h4>Source Attribution</h4>
+        <p>Every claim is linked to its source — posts, threads, and data so you can verify instantly.</p>
+      </div>
+      <div class="feature-box">
+        <div class="fb-icon">🤖</div>
+        <h4>AI Synthesis</h4>
+        <p>Hundreds of posts and data points collapsed into one coherent, actionable insight.</p>
+      </div>
+      <div class="feature-box">
+        <div class="fb-icon">🔒</div>
+        <h4>Powered by LCX</h4>
+        <p>Built on LCX's regulated infrastructure — the trusted exchange behind crypto compliance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LCX TRUST BLOCK -->
+  <div class="lcx-section fade-in">
+    <div class="lcx-icon">LCX</div>
+    <div class="lcx-body">
+      <h3>Backed by LCX — Liberty Crypto Exchange</h3>
+      <p>Finance AI is developed by LCX AI Labs, the research arm of <a href="https://lcx.com" target="_blank">LCX (Liberty Crypto Exchange)</a> — a regulated, EU-licensed crypto exchange trusted by thousands of users globally. Finance AI inherits LCX's commitment to compliance, transparency, and user trust.</p>
+    </div>
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <section class="bottom-cta fade-in">
+    <h2>Start your research now</h2>
+    <p>Free to use. No account required to try. Finance-grade AI in seconds.</p>
+    <a href="#" class="btn-primary">Ask Finance AI →</a>
+    <div class="sub-links">
+      <a href="feature.html">Features</a>
+      <a href="#">Docs</a>
+      <a href="#">About LCX</a>
+      <a href="#">Changelog</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Finance AI developed by LCX AI Labs. Beta product.</p>
+    <p>Not financial advice. Finance AI is a research tool only. Users are responsible for their own investment decisions.</p>
+    <p style="margin-top:10px;"><a href="https://lcx.com" target="_blank">LCX (Liberty Crypto Exchange)</a> · Finance AI by LCX</p>
+  </footer>
+
+</div>
+<script>
+const faders = document.querySelectorAll('.fade-in');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+faders.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
