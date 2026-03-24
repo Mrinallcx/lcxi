@@ -7,13 +7,5 @@
     { "source": "/fin", "destination": "/fin/index.html" },
     { "source": "/fin/about", "destination": "/fin/about.html" },
     { "source": "/fin/products", "destination": "/fin/products.html" }
-  ],
-  "headers": [
-    {
-      "source": "/sitemap.xml",
-      "headers": [
-        { "key": "Content-Type", "value": "application/xml; charset=utf-8" }
-      ]
-    }
   ]
 }
