@@ -8,6 +8,7 @@
 - [Features](https://www.lcxai.xyz/feature.html): Search modes, capabilities, Lookout agents, pricing
 - [About](https://www.lcxai.xyz/about.html): Mission, team, roadmap, and LCX
 - [Documentation](https://www.lcxai.xyz/docs.html): API reference, quick start, guides, FAQ
+- [Insights](https://www.lcxai.xyz/insight.html): Research articles, product updates, and guides
 
 ## What LCX AI Does
 
