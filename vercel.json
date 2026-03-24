@@ -3,6 +3,11 @@
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true }
   ],
+  "rewrites": [
+    { "source": "/fin", "destination": "/fin/index.html" },
+    { "source": "/fin/about", "destination": "/fin/about.html" },
+    { "source": "/fin/products", "destination": "/fin/products.html" }
+  ],
   "headers": [
     {
       "source": "/sitemap.xml",
