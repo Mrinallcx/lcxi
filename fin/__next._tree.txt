@@ -1,8 +1,0 @@
-:HL["/fin/_next/static/chunks/4786ed448b7e18d5.css","style"]
-:HL["/fin/_next/static/media/5c285b27cdda1fe8-s.p.a62025f2.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/fin/_next/static/chunks/f0bba11b51f49a1f.css","style"]
-:HL["/fin/_next/static/chunks/464785e8f7b71a31.css","style"]
-:HL["/fin/_next/static/chunks/01b8254b08b4faa7.css","style"]
-:HL["https://res.cloudinary.com/djsb5ye4c/video/upload/v1773754964/totofinance%20background%2001.mp4","video",{"type":"video/mp4"}]
-:HL["/totofinance-white.svg","image"]
-0:{"buildId":"wRV-RAXeRnq8vwul-empq","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
